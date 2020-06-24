@@ -35,6 +35,12 @@ php artisan vendor:publish --provider="Fjord\Ui\FjordUiServiceProvider" --tag=vi
 
 ## Image
 
+The image component uses lazy loading and prints a base64 string of the image
+before loading it. It also outputs the appropriate media conversion for the
+corresponding screen sizes.
+
+The component requires an image parameter with a media model:
+
 ```php
 <x-image :image="$model->image"/>
 ```
