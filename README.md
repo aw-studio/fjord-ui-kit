@@ -5,6 +5,13 @@ A package with helpful Blade components for your
 
 ## Setup
 
+Publish the necessary assets.
+
+```shell
+php artisan vendor:publish --provider="BladeScript\ServiceProvider"
+php artisan vendor:publish --provider="BladeStyle\ServiceProvider"
+```
+
 To include all styles and scripts the `x-styles` tag must be placed in the head
 and the `x-scripts` tag at the end of the body.
 
