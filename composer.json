@@ -1,0 +1,29 @@
+{
+	"name": "aw-studio/fjord-ui-kit",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Lennart Carstens-Behrens",
+			"email": "lennart.carbe@gmail.com"
+		}
+	],
+	"require": {
+		"cbl/blade-script": "~0.0",
+		"cbl/blade-style": "~0.2"
+	},
+	"autoload": {
+		"psr-4": {
+			"Fjord\\Ui\\": "src/"
+		},
+		"files": [
+			"src/Support/helpers.php"
+		]
+	},
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Fjord\\Ui\\FjordUiServiceProvider"
+			]
+		}
+	}
+}
