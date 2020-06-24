@@ -29,17 +29,25 @@ class ImageComponent extends Component
     public $class;
 
     /**
+     * Wether to lazy load images with base64 string.
+     *
+     * @var boolean
+     */
+    public $lazy;
+
+    /**
      * Create new ImageComponent instance.
      *
      * @param Media $image
      * @param string $alt
      * @param string $class
      */
-    public function __construct(Media $image, $alt = '', $class = '')
+    public function __construct(Media $image, $lazy = true, $alt = '', $class = '')
     {
         $this->image = $image;
         $this->alt = $alt;
         $this->class = $class;
+        $this->lazy = $lazy;
     }
 
     /**
