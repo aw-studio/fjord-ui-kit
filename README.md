@@ -42,5 +42,5 @@ corresponding screen sizes.
 The component requires an image parameter with a media model:
 
 ```php
-<x-image :image="$model->image"/>
+<x-fj-image :image="$model->image"/>
 ```
