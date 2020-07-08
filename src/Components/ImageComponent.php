@@ -15,6 +15,13 @@ class ImageComponent extends Component
     public $image;
 
     /**
+     * Wether to lazy load images with base64 string.
+     *
+     * @var boolean
+     */
+    public $lazy;
+
+    /**
      * The images alt text.
      *
      * @var string
@@ -29,16 +36,10 @@ class ImageComponent extends Component
     public $class;
 
     /**
-     * Wether to lazy load images with base64 string.
-     *
-     * @var boolean
-     */
-    public $lazy;
-
-    /**
      * Create new ImageComponent instance.
      *
      * @param Media $image
+     * @param bool $lazy
      * @param string $alt
      * @param string $class
      */
@@ -53,7 +54,7 @@ class ImageComponent extends Component
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\View\View|string
+     * @return \Illuminate\View\View
      */
     public function render()
     {

@@ -52,6 +52,15 @@ The component requires an image parameter with a media model:
 <x-fj-image :image="$model->image"/>
 ```
 
+The component lazy loads images and previews a minified base64 version of the
+image untill it is loaded. ![fjord lazy loading](./lazy.png)
+
+You may disable lazy loading by setting the `lazy` attribute to false:
+
+```php
+<x-fj-image :image="$model->image" :lazy="false" />
+```
+
 ## Helpers
 
 ### `child_is_active`
