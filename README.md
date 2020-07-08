@@ -51,3 +51,19 @@ The component requires an image parameter with a media model:
 ```php
 <x-fj-image :image="$model->image"/>
 ```
+
+## Helpers
+
+### `child_is_active`
+
+The child is active determines wether a list item has a child with an active
+route. The following example will add the `is-active` class when a list item has
+an active `route` that is added from route field.
+
+```php
+@foreach($data->list as $item)
+	<span class="child_is_active($item, 'route', 'is-active')">
+		{{ $item->title }}
+	</span>
+@endforeach
+```
