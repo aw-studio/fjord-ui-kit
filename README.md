@@ -70,8 +70,12 @@ route. The following example will add the `is-active` class when a list item has
 an active `route` that is added from route field.
 
 ```php
+$form->route('route_field')->collection('app')->title('Pick a route.');
+```
+
+```php
 @foreach($data->list as $item)
-	<span class="child_is_active($item, 'route', 'is-active')">
+	<span class="child_is_active($item, 'route_field', 'is-active')">
 		{{ $item->title }}
 	</span>
 @endforeach
