@@ -9,7 +9,9 @@ if (!function_exists('b64')) {
      */
     function b64(string $path)
     {
-        if (!file_exists($path)) return;
+        if (!file_exists($path)) {
+            return;
+        }
 
         $type   = pathinfo($path, PATHINFO_EXTENSION);
         $data   = file_get_contents($path);
