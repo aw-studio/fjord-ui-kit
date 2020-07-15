@@ -34,13 +34,7 @@ if (! function_exists('child_is_active')) {
     function child_is_active(FormListItem $item, $fieldId = 'route', $value = null)
     {
         foreach ($item->children as $child) {
-            if (! $item->{$fieldId} instanceof FormListItem) {
-                if (child_is_active($child, $fieldId, $value) !== false) {
-                    return $value === null ? true : $value;
-                }
-            }
-
-            if (! $child->{$fieldId}->isActive()) {
+            if (! $child->{$fieldId}->isActive() && ! child_is_active($child, $fieldId, $value)) {
                 continue;
             }
 
