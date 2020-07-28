@@ -8,7 +8,10 @@ use Illuminate\Support\ServiceProvider;
 class FjordUiServiceProvider extends ServiceProvider
 {
     protected $components = [
-        'fj-image' => Components\ImageComponent::class
+        'fj-image' => Components\ImageComponent::class,
+        'fj-burger' => Components\Burger::class,
+        'fj-off-canvas' => Components\OffCanvas::class,
+        'fj-nav-list' => Components\NavList::class
     ];
 
     /**
