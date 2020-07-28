@@ -7,6 +7,11 @@ use Illuminate\Support\ServiceProvider;
 
 class FjordUiServiceProvider extends ServiceProvider
 {
+    /**
+     * Blade x components.
+     *
+     * @var array
+     */
     protected $components = [
         'fj-image' => Components\ImageComponent::class,
         'fj-burger' => Components\Burger::class,
