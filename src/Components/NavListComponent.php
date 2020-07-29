@@ -5,7 +5,7 @@ namespace Fjord\Ui\Components;
 use Fjord\Crud\Fields\ListField\ListCollection;
 use Illuminate\View\Component;
 
-class NavList extends Component
+class NavListComponent extends Component
 {
     /**
      * The list.

@@ -4,7 +4,7 @@ namespace Fjord\Ui\Components;
 
 use Illuminate\View\Component;
 
-class OffCanvas extends Component
+class OffCanvasComponent extends Component
 {
     /**
      * Direction from where the off canvas animates in.

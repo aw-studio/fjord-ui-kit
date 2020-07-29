@@ -4,7 +4,7 @@ namespace Fjord\Ui\Components;
 
 use Illuminate\View\Component;
 
-class Burger extends Component
+class BurgerComponent extends Component
 {
     /**
      * css class for customization.

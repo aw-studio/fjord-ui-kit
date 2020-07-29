@@ -13,11 +13,11 @@ class FjordUiServiceProvider extends ServiceProvider
      * @var array
      */
     protected $components = [
-        'fj-image' => Components\ImageComponent::class,
-        'fj-burger' => Components\Burger::class,
-        'fj-off-canvas' => Components\OffCanvas::class,
-        'fj-nav-list' => Components\NavList::class,
-        'fj-meta-tags' => Components\MetaTags::class
+        'fj-image'      => Components\ImageComponent::class,
+        'fj-burger'     => Components\BurgerComponent::class,
+        'fj-off-canvas' => Components\OffCanvasComponent::class,
+        'fj-nav-list'   => Components\NavListComponent::class,
+        'fj-meta-tags'  => Components\MetaTagsComponent::class,
     ];
 
     /**
@@ -27,7 +27,7 @@ class FjordUiServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->loadViewsFrom(__DIR__ . '/../views', 'fjord-ui');
+        $this->loadViewsFrom(__DIR__.'/../views', 'fjord-ui');
 
         $this->registerBladeComponents();
 
@@ -54,7 +54,7 @@ class FjordUiServiceProvider extends ServiceProvider
     protected function registerPublishes()
     {
         $this->publishes([
-            __DIR__ . '/../views' => resource_path('views/vendor/fjord-ui'),
+            __DIR__.'/../views' => resource_path('views/vendor/fjord-ui'),
         ], 'views');
     }
 }

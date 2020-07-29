@@ -5,7 +5,7 @@ namespace Fjord\Ui\Components;
 use Fjord\Support\Facades\Form;
 use Illuminate\View\Component;
 
-class MetaTags extends Component
+class MetaTagsComponent extends Component
 {
     /**
      * The meta title.
