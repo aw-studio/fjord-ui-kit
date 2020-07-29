@@ -1,5 +1,4 @@
-<div class="fj-off-canvas" id="fj-burger-target">
-Off canvas
+<div class="fj-off-canvas fj-off-canvas--{{ $direction }} {{ $class }}" id="{{ $target_id }}">
 {{ $slot }}
 </div>
 
@@ -7,15 +6,27 @@ Off canvas
 
     .fj-off-canvas {
         position:fixed;
-        left:100vw;
         top:0;
+        left:0;
         width:100vw;
         height:100vh;
         transition:all 0.3s;
         background:white;
         text-align:center;
+        &.fj-off-canvas--rtl {
+            transform:translate(100%,0);
+        }
+        &.fj-off-canvas--ltr {
+            transform:translate(-100%,0);
+        }
+        &.fj-off-canvas--ttb {
+            transform:translate(0,-100%);
+        }
+        &.fj-off-canvas--btt {
+            transform:translate(0,100%);
+        }
         &.fj--visible {
-            left:0;
+            transform:translate(0,0) !important;
         }
     }
 

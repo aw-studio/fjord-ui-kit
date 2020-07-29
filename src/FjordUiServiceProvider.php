@@ -16,7 +16,8 @@ class FjordUiServiceProvider extends ServiceProvider
         'fj-image' => Components\ImageComponent::class,
         'fj-burger' => Components\Burger::class,
         'fj-off-canvas' => Components\OffCanvas::class,
-        'fj-nav-list' => Components\NavList::class
+        'fj-nav-list' => Components\NavList::class,
+        'fj-meta-tags' => Components\MetaTags::class
     ];
 
     /**

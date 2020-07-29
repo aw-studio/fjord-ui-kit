@@ -1,4 +1,5 @@
 <nav class="fj-nav-list 
+@if($class) {{ $class }} @endif
 @if($layout == 'horizontal') fj-nav-list--horizontal @endif
 @if($expandable) fj-nav-list--expandable @endif 
 @if($dropdown) fj-nav-list--dropdown @endif
@@ -6,7 +7,7 @@
    <ul>
     @include('fjord-ui::partials.nav_level',[
         'items' => $list,
-        'active_class' => 'fj--active',
+        'active_class' => $active_class,
         ])
    </ul>
 </nav>

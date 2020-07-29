@@ -49,14 +49,26 @@ class NavList extends Component
     */
     public $dropdown;
 
-   
+    /**
+    * Custom css class(es).
+    *
+    * @var string
+    */
+    public $class;
+
+    /**
+    * Custom css active class(es).
+    *
+    * @var string
+    */
+    public $active_class;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($list, $depth = null, $sublevel = 1, $layout = null, $expandable = false, $dropdown = null)
+    public function __construct($list, $depth = null, $sublevel = 1, $layout = null, $expandable = false, $dropdown = null, $class = '', $active_class = 'fj--active')
     {
         $this->list = $list;
         $this->depth = $depth;
@@ -64,6 +76,8 @@ class NavList extends Component
         $this->expandable = $expandable;
         $this->layout = $layout;
         $this->dropdown = $dropdown;
+        $this->class = $class;
+        $this->active_class = $active_class;
     }
 
     /**
