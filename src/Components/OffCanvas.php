@@ -6,31 +6,33 @@ use Illuminate\View\Component;
 
 class OffCanvas extends Component
 {
-
     /**
-     * Direction from where the off canvas animates in
+     * Direction from where the off canvas animates in.
      *
      * @var string
      */
     public $direction;
 
     /**
-    * Custom css class(es).
-    *
-    * @var string
-    */
+     * Custom css class(es).
+     *
+     * @var string
+     */
     public $class;
 
     /**
-    * custom id attribute.
-    *
-    * @var string
-    */
-    public $id;
-    
-    /**
-     * Create a new component instance.
+     * Custom id attribute.
      *
+     * @var string
+     */
+    public $id;
+
+    /**
+     * Create new OffCanvas instance.
+     *
+     * @param  string $direction
+     * @param  string $class
+     * @param  string $id
      * @return void
      */
     public function __construct($direction = 'rtl', $class = '', $id = 'fj-burger-target')

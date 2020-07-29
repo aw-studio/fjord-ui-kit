@@ -17,7 +17,7 @@ class ImageComponent extends Component
     /**
      * Wether to lazy load images with base64 string.
      *
-     * @var boolean
+     * @var bool
      */
     public $lazy;
 
@@ -38,10 +38,11 @@ class ImageComponent extends Component
     /**
      * Create new ImageComponent instance.
      *
-     * @param Media $image
-     * @param bool $lazy
-     * @param string $alt
-     * @param string $class
+     * @param  Media  $image
+     * @param  bool   $lazy
+     * @param  string $alt
+     * @param  string $class
+     * @return void
      */
     public function __construct(Media $image, $lazy = true, $alt = '', $class = '')
     {

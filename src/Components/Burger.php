@@ -6,7 +6,6 @@ use Illuminate\View\Component;
 
 class Burger extends Component
 {
-
     /**
      * css class for customization.
      *
@@ -29,16 +28,19 @@ class Burger extends Component
     public $toggleclass;
 
     /**
-     * numer of burger bars (2 or 3, default is 2)
+     * Numer of burger bars (2 or 3, default is 2).
      *
      * @var string
      */
     public $bars;
 
-
     /**
      * Create a new component instance.
      *
+     * @param  string $class
+     * @param  string $target
+     * @param  string $toggleclass
+     * @param  string $bars
      * @return void
      */
     public function __construct($class = '', $target = '#fj-burger-target', $toggleclass = 'fj--visible', $bars = 2)
