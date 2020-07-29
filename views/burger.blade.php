@@ -3,9 +3,13 @@
     @if($bars == 3) fj-burger--3bars @endif
     {{ $class }}
     ">
-    <span></span>
-    <span></span>
-    <span></span>
+    @if(!$slot->isEmpty())
+        {{ $slot }}
+    @else
+        <span></span>
+        <span></span>
+        <span></span> 
+    @endif
 </button>
 
 <x-style lang="scss">
@@ -61,11 +65,16 @@
     }
 </x-style>
 
+<script>
+    window.fjBurgerTarget = '{{ $target }}';
+    window.fjBurgerToggleClass = '{{ $toggleclass }}';
+</script>
+
 <x-script>
-const fjBurger = document.querySelector('button.fj-burger');
-const fjBurgerTarget = document.querySelector('#fj-burger-target');
-fjBurger.addEventListener('click',function(){
-    this.classList.toggle('fj-burger--open');
-    fjBurgerTarget.classList.toggle('fj--visible');
+window.fjBurger = document.querySelector('button.fj-burger');
+window.fjBurgerTarget = document.querySelector(window.fjBurgerTarget);
+window.fjBurger.addEventListener('click',function(){
+        this.classList.toggle('fj-burger--open');
+        window.fjBurgerTarget.classList.toggle(window.fjBurgerToggleClass);
 });
 </x-script>

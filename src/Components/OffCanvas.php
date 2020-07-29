@@ -22,22 +22,22 @@ class OffCanvas extends Component
     public $class;
 
     /**
-    * Target id for bring to viewport function.
+    * custom id attribute.
     *
     * @var string
     */
-    public $target_id;
+    public $id;
     
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($direction = 'rtl', $class = '', $target_id = 'fj-burger-target')
+    public function __construct($direction = 'rtl', $class = '', $id = 'fj-burger-target')
     {
         $this->direction = $direction;
         $this->class = $class;
-        $this->target_id = $target_id;
+        $this->id = $id;
     }
 
     /**

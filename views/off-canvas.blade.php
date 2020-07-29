@@ -1,4 +1,4 @@
-<div class="fj-off-canvas fj-off-canvas--{{ $direction }} {{ $class }}" id="{{ $target_id }}">
+<div class="fj-off-canvas fj-off-canvas--{{ $direction }} {{ $class }}" id="{{ $id }}">
 {{ $slot }}
 </div>
 

@@ -41,7 +41,7 @@ class Burger extends Component
      *
      * @return void
      */
-    public function __construct($class = '', $target = '.fj-burger-target', $toggleclass = 'fj--visible', $bars = 2)
+    public function __construct($class = '', $target = '#fj-burger-target', $toggleclass = 'fj--visible', $bars = 2)
     {
         $this->class = $class;
         $this->target = $target;
