@@ -15,7 +15,8 @@
 		"cbl/blade-style": "~0.2"
 	},
 	"require-dev": {
-		"orchestra/testbench": "^5.3"
+		"orchestra/testbench": "^5.3",
+		"mockery/mockery": "^1.4"
 	},
 	"autoload": {
 		"psr-4": {

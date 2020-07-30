@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d26f26596b515a440a108af1dd583263",
+    "content-hash": "2cfef9376dd8fb3b94304fa450b38491",
     "packages": [
         {
             "name": "cbl/blade-script",
