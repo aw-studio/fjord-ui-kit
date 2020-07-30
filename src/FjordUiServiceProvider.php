@@ -2,6 +2,7 @@
 
 namespace Fjord\Ui;
 
+use Fjord\Ui\Localize\LocalizeServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -18,6 +19,7 @@ class FjordUiServiceProvider extends ServiceProvider
         'fj-off-canvas' => Components\OffCanvasComponent::class,
         'fj-nav-list'   => Components\NavListComponent::class,
         'fj-meta-tags'  => Components\MetaTagsComponent::class,
+        'fj-localize'   => Components\LocalizeComponent::class,
     ];
 
     /**
@@ -32,6 +34,8 @@ class FjordUiServiceProvider extends ServiceProvider
         $this->registerBladeComponents();
 
         $this->registerPublishes();
+
+        $this->app->register(LocalizeServiceProvider::class);
     }
 
     /**
