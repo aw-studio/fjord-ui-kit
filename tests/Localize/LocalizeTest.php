@@ -5,6 +5,7 @@ namespace Tests\Localize;
 use Fjord\Ui\Localize\TranslatedRoutes;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
+use LogicException;
 use Mockery as m;
 use Tests\TestCase;
 
@@ -87,6 +88,15 @@ class LocalizeTest extends TestCase
 
         $controller->shouldReceive('getSlug')->withArgs([app()->getLocale(), 'hello']);
 
+        $route->translate('en');
+    }
+
+    /** @test */
+    public function test_translate_fails_when_not_for_current_route()
+    {
+        $route = Route::trans('home', LocalizeTestController::class)->getRoutes()->first();
+
+        $this->expectException(LogicException::class);
         $route->translate('en');
     }
 }

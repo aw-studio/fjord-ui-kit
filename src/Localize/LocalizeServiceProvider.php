@@ -50,7 +50,7 @@ class LocalizeServiceProvider extends ServiceProvider
     protected function registerTranslateMacro()
     {
         Route::macro('translate', function ($locale) {
-            if (Request::route()->getName() != $this->getName()) {
+            if (! Request::route() || Request::route()->getName() != $this->getName()) {
                 throw new LogicException('You may only translate the current route.');
             }
 
