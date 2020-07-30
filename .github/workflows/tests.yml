@@ -59,12 +59,10 @@ jobs:
             matrix:
                 php: [7.4]
                 laravel: [7.*]
-                stability: [prefer-lowest, prefer-stable]
+                stability: [prefer-stable]
                 include:
                     - laravel: 7.*
-        name:
-            p ${{ matrix.php }} - l ${{ matrix.laravel }} - ${{ matrix.stability
-            }} - Windows
+        name: p ${{ matrix.php }} - l ${{ matrix.laravel }} - Windows
         steps:
             - name: Checkout code
               uses: actions/checkout@v2
@@ -91,7 +89,6 @@ jobs:
               run: |
                   composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
                   composer update --${{ matrix.stability }} --prefer-dist --no-interaction
-                  php tests/install
 
             - name: Run PHP tests via PHPUnit
               run: vendor/bin/phpunit
