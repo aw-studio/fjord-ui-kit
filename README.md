@@ -1,5 +1,11 @@
 # Fjord Ui Kit
 
+<p>
+    <a href="https://github.com/aw-studio/fjord-ui-kit/actions"><img src="https://github.com/aw-studio/fjord-ui-kit/workflows/tests/badge.svg" alt="Build Status"></a>
+    <a href="https://packagist.org/packages/aw-studio/fjord-ui-kit"><img src="https://img.shields.io/github/v/release/aw-studio/fjord-ui-kit?color=%2383c2ff&label=stable" alt="Latest Stable Version"></a>
+    <a href="https://packagist.org/packages/aw-studio/fjord-ui-kit"><img src="https://img.shields.io/github/license/aw-studio/fjord-ui-kit?color=%2331c653" alt="License"></a>
+</p>
+
 A package with helpful Blade components for your
 [fjord](https://github.com/aw-studio/fjord) project.
 
