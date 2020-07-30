@@ -1,4 +1,4 @@
-# Fjord Ui Kit
+# Ui Kit
 
 <center>
 	<p>
