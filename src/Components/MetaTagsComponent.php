@@ -44,9 +44,9 @@ class MetaTagsComponent extends Component
             $settings = Form::load('collections', 'settings');
         }
 
-        $this->metaTitle = $metaTitle ?? $settings->metaTitle ?? '';
-        $this->metaDescription = $metaDescription ?? $settings->metaDescription ?? '';
-        $this->metaKeywords = $metaKeywords ?? $settings->metaKeywords ?? '';
+        $this->metaTitle = $metaTitle ?: $settings->meta_title ?? '';
+        $this->metaDescription = $metaDescription ?: $settings->meta_description ?? '';
+        $this->metaKeywords = $metaKeywords ?: $settings->meta_keywords ?? '';
     }
 
     /**
