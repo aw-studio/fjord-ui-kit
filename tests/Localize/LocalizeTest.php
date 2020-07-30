@@ -3,7 +3,9 @@
 namespace Tests\Localize;
 
 use Fjord\Ui\Localize\TranslatedRoutes;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
+use Mockery as m;
 use Tests\TestCase;
 
 class LocalizeTest extends TestCase
@@ -51,5 +53,47 @@ class LocalizeTest extends TestCase
         foreach (Route::getRoutes()->getRoutes() as $route) {
             $this->assertContains(explode('.', $route->getName())[0], ['de', 'en']);
         }
+    }
+
+    /** @test */
+    public function test_transle_macro()
+    {
+        $route = Route::trans('home', LocalizeTestController::class)
+            ->name('home')
+            ->getRoutes()
+            ->first();
+
+        Request::setRouteResolver(fn () => $route);
+
+        $this->assertStringEndsWith('de/home', route($route->getName()));
+        $this->assertStringEndsWith('en/home', $route->translate('en'));
+    }
+
+    /** @test */
+    public function test_transle_macro_calls_translator_with_parameters()
+    {
+        $route = Route::trans('home', LocalizeTestController::class)
+            ->name('home')
+            ->translator('getSlug')
+            ->getRoutes()
+            ->first();
+
+        $controller = m::mock(LocalizeTestController::class);
+        app()->bind(LocalizeTestController::class, fn () => $controller);
+
+        $this->setUnaccessibleProperty($route, 'parameters', ['slug' => 'hello']);
+
+        Request::setRouteResolver(fn () => $route);
+
+        $controller->shouldReceive('getSlug')->withArgs([app()->getLocale(), 'hello']);
+
+        $route->translate('en');
+    }
+}
+
+class LocalizeTestController
+{
+    public function __invoke()
+    {
     }
 }
