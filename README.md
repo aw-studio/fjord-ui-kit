@@ -169,10 +169,10 @@ locale:
 
 ```php
 <x-fj-localize>
-	<x-slot name="de">
+	<x-slot name="en">
 		English
 	</x-slot>
-	<x-slot name="en">
+	<x-slot name="de">
 		Deutsch
 	</x-slot>
 </x-fj-localize>
