@@ -2,7 +2,13 @@
 
 namespace Tests;
 
+use BladeScript\ServiceProvider as BladeScriptServiceProvider;
+use BladeStyle\ServiceProvider as BladeStyleServiceProvider;
 use Fjord\Ui\FjordUiServiceProvider;
+use Illuminate\Http\Testing\FileFactory;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Str;
+use Illuminate\View\View;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 use ReflectionClass;
 use ReflectionProperty;
@@ -17,6 +23,8 @@ class TestCase extends OrchestraTestCase
     protected function getPackageProviders($app)
     {
         return [
+            BladeStyleServiceProvider::class,
+            BladeScriptServiceProvider::class,
             FjordUiServiceProvider::class,
         ];
     }
@@ -41,10 +49,9 @@ class TestCase extends OrchestraTestCase
     /**
      * Calling protected or private class method.
      *
-     * @param mixed|string $abstract
-     * @param string       $method
-     * @param array        $params
-     *
+     * @param  mixed|string $abstract
+     * @param  string       $method
+     * @param  array        $params
      * @return mixed
      */
     protected function callUnaccessibleMethod($abstract, string $method, array $params = [])
@@ -68,10 +75,9 @@ class TestCase extends OrchestraTestCase
     /**
      * Set protected or private class property value.
      *
-     * @param mixed  $instance
-     * @param string $property
-     * @param mixed  $value
-     *
+     * @param  mixed  $instance
+     * @param  string $property
+     * @param  mixed  $value
      * @return void
      */
     public function setUnaccessibleProperty($instance, string $property, $value)
@@ -84,10 +90,9 @@ class TestCase extends OrchestraTestCase
     /**
      * Get protected or private class property value.
      *
-     * @param mixed  $instance
-     * @param string $property
-     * @param mixed  $value
-     *
+     * @param  mixed  $instance
+     * @param  string $property
+     * @param  mixed  $value
      * @return mixed
      */
     public function getUnaccessibleProperty($instance, string $property)
@@ -101,14 +106,47 @@ class TestCase extends OrchestraTestCase
     /**
      * Assert class has trait.
      *
-     * @param string       $trait
-     * @param string|mixed $class
-     *
+     * @param  string       $trait
+     * @param  string|mixed $class
      * @return void
      */
     public function assertHasTrait(string $trait, $class)
     {
         $traits = array_flip(class_uses_recursive($class));
         $this->assertArrayHasKey($trait, $traits);
+    }
+
+    /**
+     * Create TestDom from blade template.
+     *
+     * @param  string  $template
+     * @return TestDom
+     */
+    public function blade($template)
+    {
+        return new TestDom(
+            $this->renderBlade(Str::uuid(), $template)
+        );
+    }
+
+    /**
+     * Create view that renders the given content.
+     *
+     * @param  string $name
+     * @param  string $content
+     * @param  array  $data
+     * @return string
+     */
+    public function renderBlade($name, $content, $data = [])
+    {
+        $file = (new FileFactory)->createWithContent("{$name}.blade.php", Blade::compileString($content));
+
+        $view = new View(
+            $this->app['view'],
+            $this->app['view.engine.resolver']->resolve('blade'),
+            $name, $file->path(), $data
+        );
+
+        return $view->render();
     }
 }
