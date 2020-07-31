@@ -15,6 +15,7 @@
 		"cbl/blade-style": "dev-master"
 	},
 	"require-dev": {
+		"aw-studio/fjord": "^2.4",
 		"orchestra/testbench": "^5.3",
 		"mockery/mockery": "^1.4",
 		"paquettg/php-html-parser": "^3.0",

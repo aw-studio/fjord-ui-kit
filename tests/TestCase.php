@@ -20,6 +20,13 @@ class TestCase extends OrchestraTestCase
         parent::setUp();
     }
 
+    public function tearDown(): void
+    {
+        // $this->artisan('view:clear');
+
+        parent::tearDown();
+    }
+
     protected function getPackageProviders($app)
     {
         return [
@@ -120,12 +127,13 @@ class TestCase extends OrchestraTestCase
      * Create TestDom from blade template.
      *
      * @param  string  $template
+     * @param  array   $data
      * @return TestDom
      */
-    public function blade($template)
+    public function blade($template, $data = [])
     {
         return new TestDom(
-            $this->renderBlade(Str::uuid(), $template)
+            $this->renderBlade(Str::random(5), $template, $data)
         );
     }
 

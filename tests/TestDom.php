@@ -56,14 +56,30 @@ class TestDom
     /**
      * Assert dom has node with the given selector.
      *
-     * @param  string $selector
-     * @return $this
+     * @param  string   $selector
+     * @return TestNode
      */
     public function assertHas($selector)
     {
-        PHPUnit::assertGreaterThanOrEqual(
-            1, count($this->dom->find($selector)),
-            "Failed asserting that Html has element with selector [{$selector}]."
+        PHPUnit::assertNotNull(
+            $node = $this->dom->find($selector, 0),
+            "Failed asserting that Html has node with selector [{$selector}]."
+        );
+
+        return new TestNode($node);
+    }
+
+    /**
+     * Assert dom has node with the given selector.
+     *
+     * @param  string   $selector
+     * @return TestNode
+     */
+    public function assertDoesntHave($selector)
+    {
+        PHPUnit::assertCount(
+            0, $this->dom->find($selector),
+            "Failed asserting that Html doesn't have node with selector [{$selector}]."
         );
 
         return $this;
@@ -79,7 +95,7 @@ class TestDom
     {
         PHPUnit::assertCount(
             1, $this->dom->find($selector),
-            "Failed asserting that Html has one element with selector [{$selector}]."
+            "Failed asserting that Html has one node with selector [{$selector}]."
         );
 
         return $this;
@@ -95,7 +111,7 @@ class TestDom
     {
         PHPUnit::assertCount(
             2, $this->dom->find($selector),
-            "Failed asserting that Html has two element with selector [{$selector}]."
+            "Failed asserting that Html has two nodes with selector [{$selector}]."
         );
 
         return $this;
@@ -118,5 +134,31 @@ class TestDom
         );
 
         return $this;
+    }
+
+    /**
+     * Assert node contains html.
+     *
+     * @param  string $selector
+     * @param  string $content
+     * @return $this
+     */
+    public function assertContains($selector, $content)
+    {
+        PHPUnit::assertEquals(
+            trim($content), trim($this->dom->find($selector, 0)->innerHtml()),
+        );
+
+        return $this;
+    }
+
+    /**
+     * Parse dom to html.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->dom;
     }
 }

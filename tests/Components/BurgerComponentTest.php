@@ -6,16 +6,11 @@ use Tests\TestCase;
 
 class BurgerComponentTest extends TestCase
 {
-    public function setUp(): void
-    {
-        parent::setUp();
-    }
-
     /** @test */
     public function test_burger_component()
     {
         $blade = $this->blade('<x-fj-burger />');
-        $blade->assertHasOne('button.fj-burger');
+        $blade->assertHas('button.fj-burger')->withChildren(3, 'span');
     }
 
     /** @test */
@@ -23,12 +18,5 @@ class BurgerComponentTest extends TestCase
     {
         $blade = $this->blade('<x-fj-burger class="dummy-class"/>');
         $blade->assertHasOne('button.dummy-class');
-    }
-
-    /** @test */
-    public function test_burger_component_contains_three_spans()
-    {
-        $blade = $this->blade('<x-fj-burger />');
-        $blade->assertCount(3, 'button.fj-burger span');
     }
 }
