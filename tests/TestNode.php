@@ -69,6 +69,16 @@ class TestNode
         return $this;
     }
 
+    public function withAttribute($attribute)
+    {
+        PHPUnit::assertNotNull(
+            $attribute = $this->node->getAttribute($attribute),
+            "Failed asserting that node has attribute name [{$attribute}]."
+        );
+
+        return new TestAttribute($attribute);
+    }
+
     /**
      * Assert node contains html.
      *

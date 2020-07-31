@@ -1,4 +1,4 @@
-<title>{{ $metaTitle }}</title>
-<meta name="title" content="{{ $metaTitle }}">
-<meta name="description" content="{{ $metaDescription }}">
-<meta name="keywords" content="{{ $metaKeywords }}">
+<title>{{ $title }}</title>
+<meta name="title" content="{{ $title }}">
+<meta name="description" content="{{ $description }}">
+<meta name="keywords" content="{{ $keywords }}">

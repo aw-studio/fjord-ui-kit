@@ -2,7 +2,6 @@
 
 namespace Fjord\Ui\Components;
 
-use Fjord\Support\Facades\Form;
 use Illuminate\View\Component;
 
 class MetaTagsComponent extends Component
@@ -12,21 +11,21 @@ class MetaTagsComponent extends Component
      *
      * @var string
      */
-    public $metaTitle;
+    public $title;
 
     /**
      * The meta description.
      *
      * @var string
      */
-    public $metaDescription;
+    public $description;
 
     /**
      * The meta keywords.
      *
      * @var string
      */
-    public $metaKeywords;
+    public $keywords;
 
     /**
      * Create a new component instance.
@@ -36,17 +35,11 @@ class MetaTagsComponent extends Component
      * @param  string|null $metaKeywords
      * @return void
      */
-    public function __construct($metaTitle = null, $metaDescription = null, $metaKeywords = null)
+    public function __construct($title = null, $description = null, $keywords = null)
     {
-        $settings = null;
-
-        if (! $metaTitle || ! $metaDescription || ! $metaKeywords) {
-            $settings = Form::load('collections', 'settings');
-        }
-
-        $this->metaTitle = $metaTitle ?: $settings->meta_title ?? '';
-        $this->metaDescription = $metaDescription ?: $settings->meta_description ?? '';
-        $this->metaKeywords = $metaKeywords ?: $settings->meta_keywords ?? '';
+        $this->title = $title;
+        $this->description = $description;
+        $this->keywords = $keywords;
     }
 
     /**

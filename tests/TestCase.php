@@ -152,7 +152,9 @@ class TestCase extends OrchestraTestCase
         $view = new View(
             $this->app['view'],
             $this->app['view.engine.resolver']->resolve('blade'),
-            $name, $file->path(), $data
+            $name,
+            $file->path(),
+            $data
         );
 
         return $view->render();
