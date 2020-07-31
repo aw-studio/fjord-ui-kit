@@ -155,8 +155,13 @@ all locales.
 
 ```php
 <x-fj-localize />
-// <a href="/en/home" class="locale locale-en">EN</a>
-// <a href="/de/startseite" class="locale locale-de">DE</a>
+```
+
+Result:
+
+```html
+<a href="/en/home" class="locale locale-en">EN</a>
+<a href="/de/startseite" class="locale locale-de">DE</a>
 ```
 
 You may change the content of the link By passing a slot with the name of the
@@ -171,8 +176,13 @@ locale:
 		Deutsch
 	</x-slot>
 </x-fj-localize>
-// <a href="/en/home" class="locale locale-en">English</a>
-// <a href="/de/startseite" class="locale locale-de">Deutsch</a>
+```
+
+Result:
+
+```html
+<a href="/en/home" class="locale locale-en">English</a>
+<a href="/de/startseite" class="locale locale-de">Deutsch</a>
 ```
 
 ## Helpers
