@@ -28,6 +28,13 @@ class LocalizeComponentTest extends TestCase
     }
 
     /** @test */
+    public function test_localize_component_has_active_class()
+    {
+        $blade = $this->blade('<x-fj-localize />');
+        $blade->assertHasOne('a.locale-active');
+    }
+
+    /** @test */
     public function test_localize_component_with_slots()
     {
         $blade = $this->blade(<<<'BLADE'

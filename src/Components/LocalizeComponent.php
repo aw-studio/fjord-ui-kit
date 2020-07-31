@@ -29,6 +29,18 @@ class LocalizeComponent extends Component
     }
 
     /**
+     * Returns class when the given locale matches the current locale.
+     *
+     * @param  string $locale
+     * @param  string $class
+     * @return string
+     */
+    public function active($locale, $class)
+    {
+        return $locale == app()->getLocale() ? $class : '';
+    }
+
+    /**
      * Get the view / contents that represent the component.
      *
      * @return \Illuminate\View\View|string
