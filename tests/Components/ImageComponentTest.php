@@ -51,6 +51,29 @@ class ImageComponentTest extends TestCase
         $media->shouldReceive('getFullUrl')->andReturn('abc');
 
         $blade = $this->blade('<x-fj-image :image="$image"/>', ['image' => $media]);
+
+        $blade->assertHas('img')
+            ->withAttribute('src')
+            ->thatIs(b64($image->getRealPath()));
+    }
+
+    /** @test */
+    public function test_image_has_srcset_with_conversion_urls()
+    {
+        $image = UploadedFile::fake()->image('image.png');
+
+        $media = m::mock(Media::class)->makePartial();
+        $media->shouldReceive('getPath')->andReturn($image->getRealPath());
+        $media->shouldReceive('getFullUrl')->withArgs(['sm'])->andReturn('sm.png');
+        $media->shouldReceive('getFullUrl')->withArgs(['md'])->andReturn('md.png');
+        $media->shouldReceive('getFullUrl')->withArgs(['lg'])->andReturn('lg.png');
+        $media->shouldReceive('getFullUrl')->withArgs(['xl'])->andReturn('xl.png');
+
+        $blade = $this->blade('<x-fj-image :image="$image"/>', ['image' => $media]);
+
+        $attribute = $blade->assertHas('img')->withAttribute('data-srcset')->getAttribute();
+
+        $blade->assertHas('img')->withAttribute('data-srcset')->thatIs('sm.png 300w,md.png 500w,lg.png 900w,xl.png 1400w,');
     }
 
     public function getMediaMock($file = 'image.png')

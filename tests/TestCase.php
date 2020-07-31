@@ -29,6 +29,8 @@ class TestCase extends OrchestraTestCase
 
     protected function getPackageProviders($app)
     {
+        // dd(class_exists(BladeStyleServiceProvider::class));
+
         return [
             BladeStyleServiceProvider::class,
             BladeScriptServiceProvider::class,

@@ -2,22 +2,21 @@
 
 namespace Tests;
 
-use PHPHtmlParser\Dom;
 use PHPUnit\Framework\Assert as PHPUnit;
 
 class TestAttribute
 {
     /**
-     * Dom instance.
+     * Attribute value.
      *
      * @var string
      */
     protected $attribute;
 
     /**
-     * Create new TestDom instance..
+     * Create new TestAttribute instance.
      *
-     * @param  string $html
+     * @param  string $attribute
      * @return void
      */
     public function __construct($attribute)
@@ -26,7 +25,7 @@ class TestAttribute
     }
 
     /**
-     * Get node instance.
+     * Get attribute value.
      *
      * @return string
      */
@@ -36,15 +35,15 @@ class TestAttribute
     }
 
     /**
-     * Assert node contains html.
+     * Assert attribute value is.
      *
      * @param  string $needle
      * @return $this
      */
     public function thatIs($needle)
     {
-        PHPUnit::assertStringContainsString(
-            trim($needle), trim($this->attribute),
+        PHPUnit::assertEquals(
+            preg_replace('/\s\s+/', '', $needle), preg_replace('/\s\s+/', '', $this->attribute),
             "Failed asserting that attribute is {$needle}."
         );
 

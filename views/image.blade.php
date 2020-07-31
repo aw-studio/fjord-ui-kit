@@ -13,8 +13,6 @@
         class="{{ $lazy ? 'lazyload' : '' }} {{ $class }}" />
 </div>
 
-{{-- {{ dd($attributes->testData) }} --}}
-
 <x-style>
 .image-container {
     overflow: hidden;
