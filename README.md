@@ -97,7 +97,7 @@ class MainNavigationConfig extends FormConfig
 ```
 
 <p align="center">
-	<img src="./nav-field.png" width="500px">
+	<img src="./nav-field.png" width="600px">
 </p>
 
 Now we can simply pass the list field to the `x-fj-nav-list` component and a
@@ -111,7 +111,11 @@ $nav = Form::load('navigations', 'main_navigation');
 <x-fj-nav-list :list="$nav->main" layout="horizontal" dropdown/>
 ```
 
-![fjord nav result](./nav-result.png)
+This will result in the following simple horizontal navigation:
+
+<p align="center">
+	<img src="./nav-result.png" width="600px">
+</p>
 
 Customize the table using the following options
 
