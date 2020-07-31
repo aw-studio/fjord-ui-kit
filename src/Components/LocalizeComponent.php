@@ -2,47 +2,29 @@
 
 namespace Fjord\Ui\Components;
 
-use Illuminate\Support\Facades\Request;
 use Illuminate\View\Component;
 
 class LocalizeComponent extends Component
 {
     /**
-     * Parameters for the current route.
+     * The available locales.
      *
      * @var array
      */
-    protected $parameters = [];
-
-    protected $route;
-
-    public $routes = [];
+    public $locales = [];
 
     /**
-     * Create a new component instance.
+     * Create new LocalizeComponent instance.
      *
-     * @param  array $parameters
+     * @param  array $locales
      * @return void
      */
-    public function __construct(array $parameters = [])
+    public function __construct(array $locales = null)
     {
-        $this->parameters = $parameters;
-
-        $this->route = Request::route();
-
-        $this->setRoutes();
-    }
-
-    protected function setRoutes()
-    {
-        if (! $this->route->getName()) {
-        }
-
-        foreach (config('translatable.locales') as $locale) {
-            //$name = $this->getQualifiedRouteName($locale);
-            $this->routes[$locale] = $this->route->translate($locale);
-
-            //dd($this->route);
+        if ($locales === null) {
+            $this->locales = config('translatable.locales');
+        } else {
+            $this->locales = $locales;
         }
     }
 

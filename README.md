@@ -148,6 +148,33 @@ class MyController extends Controller
 }
 ```
 
+## Localize
+
+The Blade componend `x-fj-localize` creates a link to the translated routes of
+all locales.
+
+```php
+<x-fj-localize />
+// <a href="/en/home" class="locale locale-en">EN</a>
+// <a href="/de/startseite" class="locale locale-de">DE</a>
+```
+
+You may change the content of the link By passing a slot with the name of the
+locale:
+
+```php
+<x-fj-localize>
+	<x-slot name="de">
+		English
+	</x-slot>
+	<x-slot name="en">
+		Deutsch
+	</x-slot>
+</x-fj-localize>
+// <a href="/en/home" class="locale locale-en">English</a>
+// <a href="/de/startseite" class="locale locale-de">Deutsch</a>
+```
+
 ## Helpers
 
 ### `child_is_active`
