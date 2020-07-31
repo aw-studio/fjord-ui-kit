@@ -43,6 +43,52 @@ class ImageComponentTest extends TestCase
     }
 
     /** @test */
+    public function test_it_has_title_from_custom_properties()
+    {
+        $media = $this->getMediaMock();
+        $media->custom_properties = ['title' => 'dummy-title'];
+        $blade = $this->blade('<x-fj-image :image="$image"/>', ['image' => $media]);
+        $blade->assertHas('img')->withAttribute('title')->thatIs('dummy-title');
+
+        // Translated title
+        $media->custom_properties = [app()->getLocale() => ['title' => 'dummy-title']];
+        $blade = $this->blade('<x-fj-image :image="$image"/>', ['image' => $media]);
+        $blade->assertHas('img')->withAttribute('title')->thatIs('dummy-title');
+    }
+
+    /** @test */
+    public function test_it_has_alt_from_custom_properties()
+    {
+        $media = $this->getMediaMock();
+        $media->custom_properties = ['alt' => 'dummy-alt'];
+        $blade = $this->blade('<x-fj-image :image="$image"/>', ['image' => $media]);
+        $blade->assertHas('img')->withAttribute('alt')->thatIs('dummy-alt');
+
+        // Translated alt
+        $media->custom_properties = [app()->getLocale() => ['alt' => 'dummy-alt']];
+        $blade = $this->blade('<x-fj-image :image="$image"/>', ['image' => $media]);
+        $blade->assertHas('img')->withAttribute('alt')->thatIs('dummy-alt');
+    }
+
+    /** @test */
+    public function test_it_has_title_from_attribute()
+    {
+        $media = $this->getMediaMock();
+        $media->custom_properties = ['title' => 'property-title'];
+        $blade = $this->blade('<x-fj-image :image="$image" title="dummy-title"/>', ['image' => $media]);
+        $blade->assertHas('img')->withAttribute('title')->thatIs('dummy-title');
+    }
+
+    /** @test */
+    public function test_it_has_alt_from_attribute()
+    {
+        $media = $this->getMediaMock();
+        $media->custom_properties = ['alt' => 'property-alt'];
+        $blade = $this->blade('<x-fj-image :image="$image" alt="dummy-alt"/>', ['image' => $media]);
+        $blade->assertHas('img')->withAttribute('alt')->thatIs('dummy-alt');
+    }
+
+    /** @test */
     public function test_image_has_base64_string()
     {
         $image = UploadedFile::fake()->image('image.png');

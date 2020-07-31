@@ -29,6 +29,13 @@ class ImageComponent extends Component
     public $alt;
 
     /**
+     * The images title.
+     *
+     * @var string
+     */
+    public $title;
+
+    /**
      * css classes for the image.
      *
      * @var string
@@ -41,15 +48,32 @@ class ImageComponent extends Component
      * @param  Media  $image
      * @param  bool   $lazy
      * @param  string $alt
+     * @param  string $title
      * @param  string $class
      * @return void
      */
-    public function __construct(Media $image, $lazy = true, $alt = '', $class = '')
+    public function __construct(Media $image, $lazy = true, $alt = null, $title = null, $class = '')
     {
         $this->image = $image;
-        $this->alt = $alt;
+        $this->alt = $this->getCustomProperty('alt', $alt);
+        $this->title = $this->getCustomProperty('title', $title);
         $this->class = $class;
         $this->lazy = $lazy;
+    }
+
+    /**
+     * Get custom property value or default.
+     *
+     * @param  string $property
+     * @param  string $value
+     * @return mixed
+     */
+    protected function getCustomProperty($property, $value = null)
+    {
+        return $value
+            ?: $this->image->custom_properties[$property]
+            ?? $this->image->custom_properties[app()->getLocale()][$property]
+            ?? null;
     }
 
     /**

@@ -1,6 +1,7 @@
 <div class="image-container">
     <img
-        alt="{{ $image->custom_properties['alt'] ?? $alt }}"
+        title="{{ $title }}"
+        alt="{{ $alt }}"
         src="{{ b64($image->getPath('sm')) }}"
         data-srcset="
         {{ $image->getFullUrl('sm') }} 300w,
