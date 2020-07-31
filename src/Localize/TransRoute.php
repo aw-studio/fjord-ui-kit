@@ -26,18 +26,36 @@ class TransRoute
     }
 
     /**
-     * Get locale from browser.
+     * Gets the current locale.
      *
-     * @return void
+     * @return string
      */
     public function getLocale()
     {
+        if (count($this->locales) <= 1) {
+            return $this->getFallbackLocale();
+        }
+
+        if (in_array($locale = explode('/', request()->path())[0], $this->locales)) {
+            return $locale;
+        }
+
         if (! isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
-            return config('translatable.fallback_locale');
+            return $this->getFallbackLocale();
         }
 
         return $this->getBrowserLocale()
-            ?: config('translatable.fallback_locale');
+            ?: $this->getFallbackLocale();
+    }
+
+    /**
+     * Gets the fallback locale.
+     *
+     * @return string
+     */
+    public function getFallbackLocale()
+    {
+        return config('translatable.fallback_locale') ?: config('app.locale');
     }
 
     /**

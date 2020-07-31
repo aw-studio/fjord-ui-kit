@@ -105,7 +105,7 @@ class LocalizeTest extends TestCase
     public function test_get_locale_method()
     {
         $this->app['config']['translatable.fallback_locale'] = 'es';
-        $transRoute = new TransRoute([]);
+        $transRoute = new TransRoute(['de', 'en', 'es']);
         $this->assertEquals('es', $transRoute->getLocale());
     }
 
@@ -114,7 +114,7 @@ class LocalizeTest extends TestCase
     {
         $this->app['config']['translatable.fallback_locale'] = 'es';
         $_SERVER['HTTP_ACCEPT_LANGUAGE'] = 'de-DE,de;q=0.9,en-DE;q=0.8,en;q=0.7,en-US;q=0.6';
-        $transRoute = new TransRoute([]);
+        $transRoute = new TransRoute(['de', 'en', 'es']);
         $this->assertEquals('de', $transRoute->getLocale());
     }
 }
