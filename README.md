@@ -69,6 +69,58 @@ You may disable lazy loading by setting the `lazy` attribute to false:
 <x-fj-image :image="$model->image" :lazy="false" />
 ```
 
+## Building Navigations in Fjord
+
+Every page needs a navigation. Building it often takes time, especially if the
+design has to be adapted exactly to your needs. The Ui kit comes with a simple
+extensive solution to include all possible navigations types that are built with
+a `list` field in a short time.
+
+We start by creating a form in that we can build our navigation:
+
+```shell
+php artisan fjord:form --collection=navigations --form=main_navigation
+```
+
+The next step is to add a `nav` field to the newly created config file:
+
+```php
+namespace FjordApp\Config\Form\Navigations;
+
+class MainNavigationConfig extends FormConfig
+{
+	public function show(CrudShow $page)
+    {
+        $page->card(function ($form) {
+            $form->nav('main')->title('Main Navigation')->maxDepth(3);
+        });
+    }
+}
+```
+
+Now we can simply pass the list field to the `x-fj-nav-list` component and a
+navigation is created that can be build in the fjord backend:
+
+```php
+use Fjord\Support\Facades\Form;
+
+$nav = Form::load('navigations', 'main_navigation');
+
+<x-fj-nav-list :list="$nav->main" layout="horizontal" dropdown/>
+```
+
+Customize the table using the following options
+
+| Method        | Description                                                            |
+| ------------- | ---------------------------------------------------------------------- |
+| `layout`      | Can be `horizontal` or `vertical`. (default is `vertial`)              |
+| `dropdown`    | Wether the navigation should be a dropdown menue on `mouseover`.       |
+| `depth`       | Max depth.                                                             |
+| `subLevel`    | Start depth.                                                           |
+| `expandable`  | Only display's level one, all child levels can be expanded on `click`. |
+| `class`       | Navigation class.                                                      |
+| `activeClass` | Class of active items. (default is: `fj--active`)                      |
+
 ## Translatable Routes
 
 Build translated routes in the form of `/en/home`, `/de/startseite` made easy.

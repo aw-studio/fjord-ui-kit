@@ -22,6 +22,10 @@ class FjordUiServiceProvider extends ServiceProvider
         'fj-localize'   => Components\LocalizeComponent::class,
     ];
 
+    protected $macros = [
+        Macros\CrudNavMacro::class,
+    ];
+
     /**
      * Register application services.
      *
@@ -36,6 +40,20 @@ class FjordUiServiceProvider extends ServiceProvider
         $this->registerPublishes();
 
         $this->app->register(LocalizeServiceProvider::class);
+
+        $this->registerMacros();
+    }
+
+    /**
+     * Register macros.
+     *
+     * @return void
+     */
+    public function registerMacros()
+    {
+        foreach ($this->macros as $macro) {
+            (new $macro)->register();
+        }
     }
 
     /**

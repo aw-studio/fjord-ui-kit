@@ -30,10 +30,11 @@ class NavListComponent extends Component
 
     /**
      * The Layout of the Nav. Can be horizontal, default is vertical.
+     * Can be: `horizontal`, `vertical`.
      *
      * @var string
      */
-    public $layout;
+    public $layout = 'vertical';
 
     /**
      * Children ul-lists are hidden but expandable via button click.
@@ -68,7 +69,7 @@ class NavListComponent extends Component
      *
      * @param  ListCollection $list
      * @param  int|null       $depth
-     * @param  int            $sublevel
+     * @param  int            $subLevel
      * @param  string|null    $layout
      * @param  bool           $expandable
      * @param  bool           $dropdown
@@ -78,21 +79,21 @@ class NavListComponent extends Component
      */
     public function __construct(ListCollection $list,
                                 $depth = null,
-                                $sublevel = 1,
+                                $subLevel = 1,
                                 $layout = null,
                                 $expandable = false,
                                 $dropdown = false,
                                 $class = '',
-                                $active_class = 'fj--active')
+                                $activeClass = 'fj--active')
     {
         $this->list = $list;
         $this->depth = $depth;
-        $this->sublevel = $sublevel;
+        $this->sublevel = $subLevel;
         $this->expandable = $expandable;
         $this->layout = $layout;
         $this->dropdown = $dropdown;
         $this->class = $class;
-        $this->active_class = $active_class;
+        $this->active_class = $activeClass;
     }
 
     /**
