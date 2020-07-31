@@ -71,7 +71,7 @@ You may disable lazy loading by setting the `lazy` attribute to false:
 
 ## Translatable Routes
 
-Build tranlated routes in the form of `/en/home`, `/de/startseite` made easy.
+Build translated routes in the form of `/en/home`, `/de/startseite` made easy.
 
 Make shure to translate your routes within your translation-files in the
 `resources` directory, for example:
