@@ -3,6 +3,7 @@
 namespace Tests\Localize;
 
 use Fjord\Ui\Localize\TranslatedRoutes;
+use Fjord\Ui\Localize\TransRoute;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 use LogicException;
@@ -98,6 +99,23 @@ class LocalizeTest extends TestCase
 
         $this->expectException(LogicException::class);
         $route->translate('en');
+    }
+
+    /** @test */
+    public function test_get_locale_method()
+    {
+        $this->app['config']['translatable.fallback_locale'] = 'es';
+        $transRoute = new TransRoute([]);
+        $this->assertEquals('es', $transRoute->getLocale());
+    }
+
+    /** @test */
+    public function test_get_locale_method_gets_browser_locale()
+    {
+        $this->app['config']['translatable.fallback_locale'] = 'es';
+        $_SERVER['HTTP_ACCEPT_LANGUAGE'] = 'de-DE,de;q=0.9,en-DE;q=0.8,en;q=0.7,en-US;q=0.6';
+        $transRoute = new TransRoute([]);
+        $this->assertEquals('de', $transRoute->getLocale());
     }
 }
 

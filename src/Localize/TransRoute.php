@@ -26,6 +26,31 @@ class TransRoute
     }
 
     /**
+     * Get locale from browser.
+     *
+     * @return void
+     */
+    public function getLocale()
+    {
+        if (! isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+            return config('translatable.fallback_locale');
+        }
+
+        return $this->getBrowserLocale()
+            ?: config('translatable.fallback_locale');
+    }
+
+    /**
+     * Get locale from browser.
+     *
+     * @return void
+     */
+    public function getBrowserLocale()
+    {
+        return substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) ?? null;
+    }
+
+    /**
      * Create translated routes.
      *
      * @param  string $uri

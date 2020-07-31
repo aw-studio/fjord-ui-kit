@@ -20,7 +20,7 @@ class LocalizeServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('route.trans', function ($app) {
-            return new TransRoute($app['config']['translatable.locales']);
+            return new TransRoute($app['config']['translatable.locales'] ?: []);
         });
 
         // Macros
@@ -28,6 +28,10 @@ class LocalizeServiceProvider extends ServiceProvider
         $this->registerTranslateMacro();
         $this->registerTranslatorMacro();
         $this->registerGetNameWithoutLocaleMacro();
+
+        $this->app->afterResolving('translator', function ($app) {
+            $this->app->setLocale($this->app['route.trans']->getLocale());
+        });
     }
 
     /**

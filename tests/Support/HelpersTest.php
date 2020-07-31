@@ -23,7 +23,7 @@ class HelpersTest extends TestCase
     /** @test */
     public function test___routes_helper()
     {
-        app()->setLocale('de');
+        $this->app->setLocale('de');
 
         $url = m::mock(UrlGenerator::class)->makePartial();
         app()->bind('url', fn () => $url);

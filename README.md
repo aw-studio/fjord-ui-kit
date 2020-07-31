@@ -220,7 +220,7 @@ all locales.
 Result:
 
 ```html
-<a href="/en/home" class="locale locale-en">EN</a>
+<a href="/en/home" class="locale locale-en locale-active">EN</a>
 <a href="/de/startseite" class="locale locale-de">DE</a>
 ```
 
@@ -241,7 +241,7 @@ locale:
 Result:
 
 ```html
-<a href="/en/home" class="locale locale-en">English</a>
+<a href="/en/home" class="locale locale-en locale-active">English</a>
 <a href="/de/startseite" class="locale locale-de">Deutsch</a>
 ```
 
