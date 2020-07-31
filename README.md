@@ -1,12 +1,10 @@
 # Ui Kit
 
-<center>
-	<p>
-		<a href="https://github.com/aw-studio/fjord-ui-kit/actions"><img src="https://github.com/aw-studio/fjord-ui-kit/workflows/tests/badge.svg" alt="Build Status"></a>
-		<a href="https://packagist.org/packages/aw-studio/fjord-ui-kit"><img src="https://img.shields.io/github/v/release/aw-studio/fjord-ui-kit?color=%2383c2ff&label=stable" alt="Latest Stable Version"></a>
-		<a href="https://packagist.org/packages/aw-studio/fjord-ui-kit"><img src="https://img.shields.io/github/license/aw-studio/fjord-ui-kit?color=%2331c653" alt="License"></a>
-	</p>
-</center>
+<p align="center">
+	<a href="https://github.com/aw-studio/fjord-ui-kit/actions"><img src="https://github.com/aw-studio/fjord-ui-kit/workflows/tests/badge.svg" alt="Build Status"></a>
+	<a href="https://packagist.org/packages/aw-studio/fjord-ui-kit"><img src="https://img.shields.io/github/v/release/aw-studio/fjord-ui-kit?color=%2383c2ff&label=stable" alt="Latest Stable Version"></a>
+	<a href="https://packagist.org/packages/aw-studio/fjord-ui-kit"><img src="https://img.shields.io/github/license/aw-studio/fjord-ui-kit?color=%2331c653" alt="License"></a>
+</p>
 
 A package with helpful Blade components for your
 [fjord](https://github.com/aw-studio/fjord) project.
@@ -98,6 +96,10 @@ class MainNavigationConfig extends FormConfig
 }
 ```
 
+<p align="center">
+	<img src="./nav-field.png" width="500px">
+</p>
+
 Now we can simply pass the list field to the `x-fj-nav-list` component and a
 navigation is created that can be build in the fjord backend:
 
@@ -108,6 +110,8 @@ $nav = Form::load('navigations', 'main_navigation');
 
 <x-fj-nav-list :list="$nav->main" layout="horizontal" dropdown/>
 ```
+
+![fjord nav result](./nav-result.png)
 
 Customize the table using the following options
 
