@@ -23,6 +23,7 @@ class ImageComponentTest extends TestCase
         $media = $this->getMediaMock();
         $blade = $this->blade('<x-fj-image :image="$image"/>', ['image' => $media]);
         $blade->assertHas('.image-container')->withChild('img');
+        $blade->assertHas('img')->withAttribute('data-sizes')->thatIs('auto');
     }
 
     /** @test */
