@@ -41,13 +41,17 @@ class ImageComponentTest extends TestCase
         $blade->assertDoesntHave('.image-container img.lazyload');
     }
 
-    // /** @test */
-    // public function test_image_component_()
-    // {
-    //     $media = $this->getMediaMock();
-    //     $blade = $this->blade('<x-fj-image :image="$image"/>', ['image' => $media]);
-    //     dd((string) $blade);
-    // }
+    /** @test */
+    public function test_image_has_base64_string()
+    {
+        $image = UploadedFile::fake()->image('image.png');
+
+        $media = m::mock(Media::class)->makePartial();
+        $media->shouldReceive('getPath')->andReturn($image->getRealPath());
+        $media->shouldReceive('getFullUrl')->andReturn('abc');
+
+        $blade = $this->blade('<x-fj-image :image="$image"/>', ['image' => $media]);
+    }
 
     public function getMediaMock($file = 'image.png')
     {
