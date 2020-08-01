@@ -65,6 +65,8 @@ class LocalizeTest extends TestCase
             ->getRoutes()
             ->first();
 
+        $this->setUnaccessibleProperty($route, 'parameters', []);
+
         Request::setRouteResolver(fn () => $route);
 
         $this->assertStringEndsWith('de/home', route($route->getName()));
@@ -90,6 +92,31 @@ class LocalizeTest extends TestCase
         $controller->shouldReceive('getSlug')->withArgs([app()->getLocale(), 'hello']);
 
         $route->translate('en');
+    }
+
+    /** @test */
+    public function test_transle_macro_calls_closure_translator_with_parameters()
+    {
+        $closure = $this->mockClosure()
+            ->withArgs([app()->getLocale(), 'hello'])
+            ->andReturn('dummy-params');
+
+        $route = Route::trans('home', LocalizeTestController::class)
+            ->name('home')
+            ->translator($closure->getClosure())
+            ->getRoutes()
+            ->first();
+
+        $controller = m::mock(LocalizeTestController::class);
+        app()->bind(LocalizeTestController::class, fn () => $controller);
+
+        $this->setUnaccessibleProperty($route, 'parameters', ['slug' => 'hello']);
+
+        Request::setRouteResolver(fn () => $route);
+
+        $this->assertStringEndsWith('dummy-params', $route->translate('en'));
+
+        $closure->assertWasCalled();
     }
 
     /** @test */

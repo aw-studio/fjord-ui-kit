@@ -3,6 +3,7 @@
 namespace Fjord\Ui\Localize;
 
 use Closure;
+use FjordPages\Models\FjordPage;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route as RouteFacade;
@@ -75,13 +76,15 @@ class LocalizeServiceProvider extends ServiceProvider
     {
         Route::macro('translator', function ($translator) {
             $this->translator = function ($locale) use ($translator) {
+                $arguments = [
+                    $locale,
+                    ...array_values(Request::route()->parameters()),
+                ];
+
                 if ($translator instanceof Closure) {
-                    $parameters = $translator($locale);
+                    $parameters = $translator(...$arguments);
                 } else {
-                    $parameters = $this->getController()->$translator(
-                        $locale,
-                        ...array_values(Request::route()->parameters())
-                    );
+                    $parameters = $this->getController()->$translator(...$arguments);
                 }
 
                 $name = $this->getNameWithoutLocale();
@@ -90,6 +93,16 @@ class LocalizeServiceProvider extends ServiceProvider
             };
 
             return $this;
+        });
+
+        $this->app->afterResolving('fjord.pages.routes', function ($routes) {
+            $routes->extend(function (Route $route) {
+                $route->translator(function ($locale, $slug = null) {
+                    $slug = FjordPage::current()->translate($locale)->t_slug;
+
+                    return ['slug' => $slug];
+                });
+            });
         });
     }
 

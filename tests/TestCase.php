@@ -126,6 +126,16 @@ class TestCase extends OrchestraTestCase
     }
 
     /**
+     * Create new closure mock.
+     *
+     * @return ClosureMock
+     */
+    public function mockClosure()
+    {
+        return new ClosureMock;
+    }
+
+    /**
      * Create TestDom from blade template.
      *
      * @param  string  $template
