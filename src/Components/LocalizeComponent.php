@@ -14,13 +14,32 @@ class LocalizeComponent extends Component
     public $locales = [];
 
     /**
+     * Wrapper tag.
+     *
+     * @var string|null
+     */
+    public $wrapper;
+
+    /**
+     * Active class.
+     *
+     * @var string
+     */
+    public $activeClass;
+
+    /**
      * Create new LocalizeComponent instance.
      *
-     * @param  array $locales
+     * @param  array  $locales
+     * @param  string $wrapper
+     * @param  string $activeClass
      * @return void
      */
-    public function __construct(array $locales = null)
+    public function __construct(array $locales = null, $wrapper = null, $activeClass = 'locale-active')
     {
+        $this->wrapper = $wrapper;
+        $this->activeClass = $activeClass;
+
         if ($locales === null) {
             $this->locales = config('translatable.locales');
         } else {

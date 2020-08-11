@@ -37,6 +37,22 @@ class TestNode
     }
 
     /**
+     * Assert node doesn't have child node with the given selector.
+     *
+     * @param  string   $selector
+     * @return TestNode
+     */
+    public function doesntHaveChild($selector)
+    {
+        PHPUnit::assertNull(
+            $this->node->find($selector, 0),
+            "Failed asserting that Html doesn't have child node with selector [{$selector}]."
+        );
+
+        return $this;
+    }
+
+    /**
      * Assert node has child node with the given selector.
      *
      * @param  string   $selector
