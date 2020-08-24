@@ -11,8 +11,8 @@
 		"test": "vendor/bin/phpunit"
 	},
 	"require": {
-		"cbl/blade-script": "^0.1",
-		"cbl/blade-style": "^0.3"
+		"cbl/blade-script": "^0.1.3",
+		"cbl/blade-style": "^0.3.6"
 	},
 	"require-dev": {
 		"aw-studio/fjord": "^2.4",
