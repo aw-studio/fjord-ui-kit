@@ -1,22 +1,20 @@
-# Ui Kit
-
-<p align="center">
-	<a href="https://github.com/aw-studio/fjord-ui-kit/actions"><img src="https://github.com/aw-studio/fjord-ui-kit/workflows/tests/badge.svg" alt="Build Status"></a>
-	<a href="https://packagist.org/packages/aw-studio/fjord-ui-kit"><img src="https://img.shields.io/github/v/release/aw-studio/fjord-ui-kit?color=%2383c2ff&label=stable" alt="Latest Stable Version"></a>
-	<a href="https://packagist.org/packages/aw-studio/fjord-ui-kit"><img src="https://img.shields.io/github/license/aw-studio/fjord-ui-kit?color=%2331c653" alt="License"></a>
-</p>
+# Bladesmith
 
 A package with helpful Blade components for your
-[fjord](https://github.com/aw-studio/fjord) project.
+[litstack](https://github.com/litstack/litstack) project.
+
+## Official Documentation
+
+Documentation for Bladesmith can be found on
+[litstack.io](https://litstack.io/docs/packages/bladesmith).
+
+## License
+
+Bladesmith was created by
+**[Lennart Carstens-Behrens](https://twitter.com/lennartcb)** under the
+**[Sponsorware license](https://github.com/sponsorware/docs)**
 
 ## Setup
-
-Publish the necessary assets.
-
-```shell
-php artisan vendor:publish --provider="BladeScript\ServiceProvider"
-php artisan vendor:publish --provider="BladeStyle\ServiceProvider"
-```
 
 To include all styles and scripts the `x-styles` tag must be placed in the head
 and the `x-scripts` tag at the end of the body.
