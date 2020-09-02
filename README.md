@@ -12,7 +12,7 @@ Documentation for Bladesmith can be found on
 
 Bladesmith was created by
 **[Lennart Carstens-Behrens](https://twitter.com/lennartcb)** under the
-**[Sponsorware license](https://github.com/sponsorware/docs)**
+**[Sponsorware license](https://github.com/sponsorware/docs)**.
 
 ## Setup
 
