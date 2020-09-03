@@ -1,6 +1,6 @@
 <?php
 
-namespace Fjord\Ui\Components;
+namespace Litstack\Bladesmith\Components;
 
 use Illuminate\View\Component;
 
@@ -43,7 +43,7 @@ class BurgerComponent extends Component
      * @param  string $bars
      * @return void
      */
-    public function __construct($class = '', $target = '#fj-burger-target', $toggleclass = 'fj--visible', $bars = 2)
+    public function __construct($class = '', $target = '#lit-burger-target', $toggleclass = 'lit--visible', $bars = 2)
     {
         $this->class = $class;
         $this->target = $target;
@@ -58,6 +58,6 @@ class BurgerComponent extends Component
      */
     public function render()
     {
-        return view('fjord-ui::burger');
+        return view('bladesmith::burger');
     }
 }

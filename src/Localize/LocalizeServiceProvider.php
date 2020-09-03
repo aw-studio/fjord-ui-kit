@@ -1,14 +1,14 @@
 <?php
 
-namespace Fjord\Ui\Localize;
+namespace Litstack\Bladesmith\Localize;
 
 use Closure;
-use FjordPages\Models\FjordPage;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route as RouteFacade;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
+use Litstack\Pages\Models\FjordPage;
 use LogicException;
 
 class LocalizeServiceProvider extends ServiceProvider

@@ -1,6 +1,6 @@
 <?php
 
-namespace Fjord\Ui\Components;
+namespace Litstack\Bladesmith\Components;
 
 use Fjord\Crud\Fields\ListField\ListCollection;
 use Illuminate\View\Component;
@@ -84,7 +84,7 @@ class NavListComponent extends Component
                                 $expandable = false,
                                 $dropdown = false,
                                 $class = '',
-                                $activeClass = 'fj--active')
+                                $activeClass = 'lit--active')
     {
         $this->list = $list;
         $this->depth = $depth;
@@ -103,6 +103,6 @@ class NavListComponent extends Component
      */
     public function render()
     {
-        return view('fjord-ui::nav-list');
+        return view('bladesmith::nav-list');
     }
 }

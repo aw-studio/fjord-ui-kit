@@ -1,11 +1,11 @@
-<nav class="fj-nav-list 
+<nav class="lit-nav-list 
 @if($class) {{ $class }} @endif
-@if($layout == 'horizontal') fj-nav-list--horizontal @endif
-@if($expandable) fj-nav-list--expandable @endif 
-@if($dropdown) fj-nav-list--dropdown @endif
+@if($layout == 'horizontal') lit-nav-list--horizontal @endif
+@if($expandable) lit-nav-list--expandable @endif 
+@if($dropdown) lit-nav-list--dropdown @endif
 ">
    <ul>
-    @include('fjord-ui::partials.nav_level',[
+    @include('bladesmith::partials.nav_level',[
         'items' => $list,
         'active_class' => $active_class,
         ])
@@ -13,14 +13,14 @@
 </nav>
 
 <x-style lang="scss">
-    .fj-nav-list {
-        a.fj--active {
+    .lit-nav-list {
+        a.lit--active {
             font-weight:bold;
         }
     }
 
     /* Horizontal List */
-    .fj-nav-list.fj-nav-list--horizontal {
+    .lit-nav-list.lit-nav-list--horizontal {
         ul {
             display:flex;
             li {
@@ -34,7 +34,7 @@
 
 
     /* Dropdown */
-    .fj-nav-list.fj-nav-list--dropdown {
+    .lit-nav-list.lit-nav-list--dropdown {
         ul {
             li {
                 position:relative;
@@ -78,7 +78,7 @@
 
 
     /* Expandeble List */
-    .fj-nav-list.fj-nav-list--expandable {
+    .lit-nav-list.lit-nav-list--expandable {
         li {
             position:relative;
             margin:2px 0 2px 0;
@@ -89,7 +89,7 @@
                 opacity:0;
                 transition:all 0.3s ease-in-out;
                 overflow:hidden;
-                &.fj--expand {
+                &.lit--expand {
                     max-height:500px;
                     pointer-events:all;
                     opacity:1;
@@ -97,7 +97,7 @@
             }
         }
     }
-    button.fj-nav-list__expand {
+    button.lit-nav-list__expand {
         position:absolute;
         top:0;
         right:0;
@@ -105,19 +105,19 @@
         min-width:16px;
         cursor:pointer;
         background: white url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='10px' height='7px' viewBox='0 0 10 7' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Cg id='Page-1' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(-430.000000, -236.000000)' stroke='%23000000' stroke-width='2'%3E%3Cpolyline points='431 237 435 241 439 237'%3E%3C/polyline%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
-        &.fj--close {
+        &.lit--close {
             transform:rotate(180deg);
         }
     }
 </x-style>
 
 <x-script>
-    const expandButtons = document.querySelectorAll("button.fj-nav-list__expand")
+    const expandButtons = document.querySelectorAll("button.lit-nav-list__expand")
 
     for (const button of expandButtons) {
       button.addEventListener('click', function(event) {
-        this.classList.toggle('fj--close')
-        this.nextElementSibling.classList.toggle('fj--expand')
+        this.classList.toggle('lit--close')
+        this.nextElementSibling.classList.toggle('lit--expand')
       })
     }
 </x-script>

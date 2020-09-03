@@ -2,8 +2,8 @@
 
 namespace Tests\Localize;
 
-use Fjord\Ui\Localize\TranslatedRoutes;
-use Fjord\Ui\Localize\TransRoute;
+use Litstack\Bladesmith\Localize\TranslatedRoutes;
+use Litstack\Bladesmith\Localize\TransRoute;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 use LogicException;

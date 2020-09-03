@@ -1,6 +1,6 @@
 <button class="
-    fj-burger 
-    @if($bars == 3) fj-burger--3bars @endif
+    lit-burger 
+    @if($bars == 3) lit-burger--3bars @endif
     {{ $class }}
     ">
     @if(!$slot->isEmpty())
@@ -13,7 +13,7 @@
 </button>
 
 <x-style lang="scss">
-    button.fj-burger {
+    button.lit-burger {
         position:relative;
         z-index:300;
         width:40px;
@@ -41,7 +41,7 @@
                 transform: translateY(5px);
             }
         }
-        &.fj-burger--open {
+        &.lit-burger--open {
             span {
                 &:nth-child(1) {
                     transform: translateY(0) rotate(45deg);
@@ -55,7 +55,7 @@
                 }
             }
         }
-        &.fj-burger--3bars {
+        &.lit-burger--3bars {
             span {
                 &:nth-child(2) {
                     opacity:1;
@@ -66,15 +66,15 @@
 </x-style>
 
 <script>
-    window.fjBurgerTarget = '{{ $target }}';
-    window.fjBurgerToggleClass = '{{ $toggleclass }}';
+    window.litBurgerTarget = '{{ $target }}';
+    window.litBurgerToggleClass = '{{ $toggleclass }}';
 </script>
 
 <x-script>
-window.fjBurger = document.querySelector('button.fj-burger');
-window.fjBurgerTarget = document.querySelector(window.fjBurgerTarget);
-window.fjBurger.addEventListener('click',function(){
-        this.classList.toggle('fj-burger--open');
-        window.fjBurgerTarget.classList.toggle(window.fjBurgerToggleClass);
+window.litBurger = document.querySelector('button.lit-burger');
+window.litBurgerTarget = document.querySelector(window.litBurgerTarget);
+window.litBurger.addEventListener('click',function(){
+        this.classList.toggle('lit-burger--open');
+        window.litBurgerTarget.classList.toggle(window.litBurgerToggleClass);
 });
 </x-script>

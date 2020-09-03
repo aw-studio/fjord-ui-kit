@@ -1,10 +1,10 @@
-<div class="fj-off-canvas fj-off-canvas--{{ $direction }} {{ $class }}" id="{{ $id }}">
+<div class="lit-off-canvas lit-off-canvas--{{ $direction }} {{ $class }}" id="{{ $id }}">
 {{ $slot }}
 </div>
 
 <x-style lang="scss">
 
-    .fj-off-canvas {
+    .lit-off-canvas {
         position:fixed;
         top:0;
         left:0;
@@ -13,19 +13,19 @@
         transition:all 0.3s;
         background:white;
         text-align:center;
-        &.fj-off-canvas--rtl {
+        &.lit-off-canvas--rtl {
             transform:translate(100%,0);
         }
-        &.fj-off-canvas--ltr {
+        &.lit-off-canvas--ltr {
             transform:translate(-100%,0);
         }
-        &.fj-off-canvas--ttb {
+        &.lit-off-canvas--ttb {
             transform:translate(0,-100%);
         }
-        &.fj-off-canvas--btt {
+        &.lit-off-canvas--btt {
             transform:translate(0,100%);
         }
-        &.fj--visible {
+        &.lit--visible {
             transform:translate(0,0) !important;
         }
     }

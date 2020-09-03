@@ -15,15 +15,15 @@ if($class = child_is_active($item, 'route', $active_class)) {
 
     {{-- Expand button --}}
     @if($expandable && $item->children->count() > 0)
-        <button class="fj-nav-list__expand">
+        <button class="lit-nav-list__expand">
             <span>
             </span>
         </button>
     @endif
 
     @if($item->children->count() > 0)
-        <ul class="fj-nav-list__level-{{$loop->depth+1}}">
-            @include('fjord-ui::partials.nav_level',['items'=>$item->children])
+        <ul class="lit-nav-list__level-{{$loop->depth+1}}">
+            @include('bladesmith::partials.nav_level',['items'=>$item->children])
         </ul>
     @endif
 

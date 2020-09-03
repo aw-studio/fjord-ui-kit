@@ -21,7 +21,7 @@ class ImageComponentTest extends TestCase
     public function test_image_component()
     {
         $media = $this->getMediaMock();
-        $blade = $this->blade('<x-fj-image :image="$image"/>', ['image' => $media]);
+        $blade = $this->blade('<x-lit-image :image="$image"/>', ['image' => $media]);
         $blade->assertHas('.image-container')->withChild('img');
         $blade->assertHas('img')->withAttribute('data-sizes')->thatIs('auto');
     }
@@ -30,7 +30,7 @@ class ImageComponentTest extends TestCase
     public function it_has_lazyload_class()
     {
         $media = $this->getMediaMock();
-        $blade = $this->blade('<x-fj-image :image="$image"/>', ['image' => $media]);
+        $blade = $this->blade('<x-lit-image :image="$image"/>', ['image' => $media]);
         $blade->assertHas('.image-container')->withChild('img.lazyload');
     }
 
@@ -38,7 +38,7 @@ class ImageComponentTest extends TestCase
     public function test_disable_lazyload()
     {
         $media = $this->getMediaMock();
-        $blade = $this->blade('<x-fj-image :image="$image" :lazy="false"/>', ['image' => $media]);
+        $blade = $this->blade('<x-lit-image :image="$image" :lazy="false"/>', ['image' => $media]);
         $blade->assertDoesntHave('.image-container img.lazyload');
     }
 
@@ -47,12 +47,12 @@ class ImageComponentTest extends TestCase
     {
         $media = $this->getMediaMock();
         $media->custom_properties = ['title' => 'dummy-title'];
-        $blade = $this->blade('<x-fj-image :image="$image"/>', ['image' => $media]);
+        $blade = $this->blade('<x-lit-image :image="$image"/>', ['image' => $media]);
         $blade->assertHas('img')->withAttribute('title')->thatIs('dummy-title');
 
         // Translated title
         $media->custom_properties = [app()->getLocale() => ['title' => 'dummy-title']];
-        $blade = $this->blade('<x-fj-image :image="$image"/>', ['image' => $media]);
+        $blade = $this->blade('<x-lit-image :image="$image"/>', ['image' => $media]);
         $blade->assertHas('img')->withAttribute('title')->thatIs('dummy-title');
     }
 
@@ -61,12 +61,12 @@ class ImageComponentTest extends TestCase
     {
         $media = $this->getMediaMock();
         $media->custom_properties = ['alt' => 'dummy-alt'];
-        $blade = $this->blade('<x-fj-image :image="$image"/>', ['image' => $media]);
+        $blade = $this->blade('<x-lit-image :image="$image"/>', ['image' => $media]);
         $blade->assertHas('img')->withAttribute('alt')->thatIs('dummy-alt');
 
         // Translated alt
         $media->custom_properties = [app()->getLocale() => ['alt' => 'dummy-alt']];
-        $blade = $this->blade('<x-fj-image :image="$image"/>', ['image' => $media]);
+        $blade = $this->blade('<x-lit-image :image="$image"/>', ['image' => $media]);
         $blade->assertHas('img')->withAttribute('alt')->thatIs('dummy-alt');
     }
 
@@ -75,7 +75,7 @@ class ImageComponentTest extends TestCase
     {
         $media = $this->getMediaMock();
         $media->custom_properties = ['title' => 'property-title'];
-        $blade = $this->blade('<x-fj-image :image="$image" title="dummy-title"/>', ['image' => $media]);
+        $blade = $this->blade('<x-lit-image :image="$image" title="dummy-title"/>', ['image' => $media]);
         $blade->assertHas('img')->withAttribute('title')->thatIs('dummy-title');
     }
 
@@ -84,7 +84,7 @@ class ImageComponentTest extends TestCase
     {
         $media = $this->getMediaMock();
         $media->custom_properties = ['alt' => 'property-alt'];
-        $blade = $this->blade('<x-fj-image :image="$image" alt="dummy-alt"/>', ['image' => $media]);
+        $blade = $this->blade('<x-lit-image :image="$image" alt="dummy-alt"/>', ['image' => $media]);
         $blade->assertHas('img')->withAttribute('alt')->thatIs('dummy-alt');
     }
 
@@ -97,7 +97,7 @@ class ImageComponentTest extends TestCase
         $media->shouldReceive('getPath')->andReturn($image->getRealPath());
         $media->shouldReceive('getFullUrl')->andReturn('abc');
 
-        $blade = $this->blade('<x-fj-image :image="$image"/>', ['image' => $media]);
+        $blade = $this->blade('<x-lit-image :image="$image"/>', ['image' => $media]);
 
         $blade->assertHas('img')
             ->withAttribute('src')
@@ -116,7 +116,7 @@ class ImageComponentTest extends TestCase
         $media->shouldReceive('getFullUrl')->withArgs(['lg'])->andReturn('lg.png');
         $media->shouldReceive('getFullUrl')->withArgs(['xl'])->andReturn('xl.png');
 
-        $blade = $this->blade('<x-fj-image :image="$image"/>', ['image' => $media]);
+        $blade = $this->blade('<x-lit-image :image="$image"/>', ['image' => $media]);
 
         $attribute = $blade->assertHas('img')->withAttribute('data-srcset')->getAttribute();
 

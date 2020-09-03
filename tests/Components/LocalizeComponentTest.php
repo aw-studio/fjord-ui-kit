@@ -22,7 +22,7 @@ class LocalizeComponentTest extends TestCase
     /** @test */
     public function test_localize_component()
     {
-        $blade = $this->blade('<x-fj-localize />');
+        $blade = $this->blade('<x-lit-localize />');
         $blade->assertHas('a.locale-en')->withContent('EN');
         $blade->assertHas('a.locale-de')->withContent('DE');
     }
@@ -30,7 +30,7 @@ class LocalizeComponentTest extends TestCase
     /** @test */
     public function test_localize_component_has_active_class()
     {
-        $blade = $this->blade('<x-fj-localize />');
+        $blade = $this->blade('<x-lit-localize />');
         $blade->assertHasOne('a.locale-active');
     }
 
@@ -38,14 +38,14 @@ class LocalizeComponentTest extends TestCase
     public function test_localize_component_with_slots()
     {
         $blade = $this->blade(<<<'BLADE'
-        <x-fj-localize>
+        <x-lit-localize>
             <x-slot name="en">
                 English
             </x-slot>
             <x-slot name="de">
                 Deutsch
             </x-slot>
-        </x-fj-localize>
+        </x-lit-localize>
         BLADE);
         $blade->assertHas('a.locale-en')->withContent('English');
         $blade->assertHas('a.locale-de')->withContent('Deutsch');
@@ -54,7 +54,7 @@ class LocalizeComponentTest extends TestCase
     /** @test */
     public function test_localize_component_with_selected_locales()
     {
-        $blade = $this->blade('<x-fj-localize :locales="[\'en\']"/>');
+        $blade = $this->blade('<x-lit-localize :locales="[\'en\']"/>');
         $blade->assertHas('a.locale-en')->withContent('EN');
         $blade->assertDoesntHave('a.locale-de');
     }
@@ -62,7 +62,7 @@ class LocalizeComponentTest extends TestCase
     /** @test */
     public function test_localize_component_with_wrapper_tag()
     {
-        $blade = $this->blade('<x-fj-localize wrapper="li" />');
+        $blade = $this->blade('<x-lit-localize wrapper="li" />');
         $blade->assertHas('li.locale-en')->withChild('a')->withContent('EN');
         $blade->assertHas('li.locale-de')->withChild('a')->withContent('DE');
     }
@@ -70,7 +70,7 @@ class LocalizeComponentTest extends TestCase
     /** @test */
     public function test_localize_component_with_wrapper_tag_sets_classes_to_wrapper()
     {
-        $blade = $this->blade('<x-fj-localize wrapper="li" />');
+        $blade = $this->blade('<x-lit-localize wrapper="li" />');
         $blade->assertHas('li.locale-en')->doesntHaveChild('a.locale');
         $blade->assertHas('li.locale-de')->doesntHaveChild('a.locale');
     }
@@ -80,14 +80,14 @@ class LocalizeComponentTest extends TestCase
     {
         $this->app->setLocale('en');
 
-        $blade = $this->blade('<x-fj-localize activeClass="is-active" />');
+        $blade = $this->blade('<x-lit-localize activeClass="is-active" />');
         $blade->assertHasOne('a.is-active');
     }
 
     /** @test */
     public function test_localize_component_with_wrapper_tag_sets_active_class_to_wrapper()
     {
-        $blade = $this->blade('<x-fj-localize wrapper="li" activeClass="is-active" />');
+        $blade = $this->blade('<x-lit-localize wrapper="li" activeClass="is-active" />');
         $blade->assertHasOne('li.is-active');
         $blade->assertDoesntHave('a.is-active');
     }

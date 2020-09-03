@@ -15,14 +15,14 @@
 		"cbl/blade-style": "^1.0"
 	},
 	"require-dev": {
-		"aw-studio/fjord": "^2.4",
+		"litstack/litstack": "^3.0",
 		"orchestra/testbench": "^5.3",
 		"mockery/mockery": "^1.4",
 		"paquettg/php-html-parser": "^3.0"
 	},
 	"autoload": {
 		"psr-4": {
-			"Fjord\\Ui\\": "src/"
+			"Litstack\\Bladesmith\\": "src/"
 		},
 		"files": [
 			"src/Support/helpers.php"
@@ -36,8 +36,10 @@
 	"extra": {
 		"laravel": {
 			"providers": [
-				"Fjord\\Ui\\FjordUiServiceProvider"
+				"Litstack\\Bladesmith\\BladesmithServiceProvider"
 			]
 		}
-	}
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Fjord\Ui\Components;
+namespace Litstack\Bladesmith\Components;
 
 use Illuminate\View\Component;
 
@@ -66,6 +66,6 @@ class LocalizeComponent extends Component
      */
     public function render()
     {
-        return view('fjord-ui::localize');
+        return view('bladesmith::localize');
     }
 }

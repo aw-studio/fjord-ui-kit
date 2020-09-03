@@ -2,16 +2,16 @@
 
 namespace Tests;
 
-use BladeScript\ServiceProvider as BladeScriptServiceProvider;
-use BladeStyle\ServiceProvider as BladeStyleServiceProvider;
-use Fjord\Ui\FjordUiServiceProvider;
-use Illuminate\Http\Testing\FileFactory;
-use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Str;
-use Illuminate\View\View;
-use Orchestra\Testbench\TestCase as OrchestraTestCase;
 use ReflectionClass;
 use ReflectionProperty;
+use Illuminate\View\View;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Http\Testing\FileFactory;
+use Litstack\Bladesmith\BladesmithServiceProvider;
+use Orchestra\Testbench\TestCase as OrchestraTestCase;
+use BladeStyle\ServiceProvider as BladeStyleServiceProvider;
+use BladeScript\ServiceProvider as BladeScriptServiceProvider;
 
 class TestCase extends OrchestraTestCase
 {
@@ -34,7 +34,7 @@ class TestCase extends OrchestraTestCase
         return [
             BladeStyleServiceProvider::class,
             BladeScriptServiceProvider::class,
-            FjordUiServiceProvider::class,
+            BladesmithServiceProvider::class,
         ];
     }
 

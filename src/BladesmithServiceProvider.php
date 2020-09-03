@@ -1,12 +1,12 @@
 <?php
 
-namespace Fjord\Ui;
+namespace Litstack\Bladesmith;
 
-use Fjord\Ui\Localize\LocalizeServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Litstack\Bladesmith\Localize\LocalizeServiceProvider;
 
-class FjordUiServiceProvider extends ServiceProvider
+class BladesmithServiceProvider extends ServiceProvider
 {
     /**
      * Blade x components.
@@ -14,14 +14,19 @@ class FjordUiServiceProvider extends ServiceProvider
      * @var array
      */
     protected $components = [
-        'fj-image'      => Components\ImageComponent::class,
-        'fj-burger'     => Components\BurgerComponent::class,
-        'fj-off-canvas' => Components\OffCanvasComponent::class,
-        'fj-nav-list'   => Components\NavListComponent::class,
-        'fj-meta-tags'  => Components\MetaTagsComponent::class,
-        'fj-localize'   => Components\LocalizeComponent::class,
+        'lit-image'      => Components\ImageComponent::class,
+        'lit-burger'     => Components\BurgerComponent::class,
+        'lit-off-canvas' => Components\OffCanvasComponent::class,
+        'lit-nav-list'   => Components\NavListComponent::class,
+        'lit-meta-tags'  => Components\MetaTagsComponent::class,
+        'lit-localize'   => Components\LocalizeComponent::class,
     ];
 
+    /**
+     * The macros to be registered
+     *
+     * @var array
+     */
     protected $macros = [
         Macros\CrudNavMacro::class,
     ];
@@ -33,7 +38,7 @@ class FjordUiServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->loadViewsFrom(__DIR__.'/../views', 'fjord-ui');
+        $this->loadViewsFrom(__DIR__.'/../views', 'bladesmith');
 
         $this->registerBladeComponents();
 
@@ -76,7 +81,7 @@ class FjordUiServiceProvider extends ServiceProvider
     protected function registerPublishes()
     {
         $this->publishes([
-            __DIR__.'/../views' => resource_path('views/vendor/fjord-ui'),
+            __DIR__.'/../views' => resource_path('views/vendor/bladsmith'),
         ], 'views');
     }
 }

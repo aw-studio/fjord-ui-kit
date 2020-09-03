@@ -1,6 +1,6 @@
 <?php
 
-namespace Fjord\Ui\Localize;
+namespace Litstack\Bladesmith\Localize;
 
 use Closure;
 use Illuminate\Support\Facades\Route;

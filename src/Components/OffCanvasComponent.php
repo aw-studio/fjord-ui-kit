@@ -1,6 +1,6 @@
 <?php
 
-namespace Fjord\Ui\Components;
+namespace Litstack\Bladesmith\Components;
 
 use Illuminate\View\Component;
 
@@ -35,7 +35,7 @@ class OffCanvasComponent extends Component
      * @param  string $id
      * @return void
      */
-    public function __construct($direction = 'rtl', $class = '', $id = 'fj-burger-target')
+    public function __construct($direction = 'rtl', $class = '', $id = 'lit-burger-target')
     {
         $this->direction = $direction;
         $this->class = $class;
@@ -49,6 +49,6 @@ class OffCanvasComponent extends Component
      */
     public function render()
     {
-        return view('fjord-ui::off-canvas');
+        return view('bladesmith::off-canvas');
     }
 }

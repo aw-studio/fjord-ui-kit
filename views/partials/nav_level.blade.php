@@ -4,11 +4,11 @@
     @if((!$depth || $depth >= $loop->depth))
 
         @if(!$sublevel || $sublevel <= $loop->depth)
-            @include('fjord-ui::partials.nav_item', ['item' => $item])
+            @include('bladesmith::partials.nav_item', ['item' => $item])
         @else 
             @if($item->route->isActive() || child_is_active($item, 'route'))
                 @if($item->children->count() > 0)
-                    @include('fjord-ui::partials.nav_level',['items'=>$item->children])
+                    @include('bladesmith::partials.nav_level',['items'=>$item->children])
                 @endif
             @endif
         @endif

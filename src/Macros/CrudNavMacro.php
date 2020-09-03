@@ -1,9 +1,9 @@
 <?php
 
-namespace Fjord\Ui\Macros;
+namespace Litstack\Bladesmith\Macros;
 
 use Closure;
-use Fjord\Crud\CrudShow;
+use Ignite\Crud\CrudShow;
 
 class CrudNavMacro
 {

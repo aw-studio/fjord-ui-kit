@@ -1,6 +1,6 @@
 <?php
 
-namespace Fjord\Ui\Components;
+namespace Litstack\Bladesmith\Components;
 
 use Fjord\Crud\Models\Media;
 use Illuminate\View\Component;
@@ -83,6 +83,6 @@ class ImageComponent extends Component
      */
     public function render()
     {
-        return view('fjord-ui::image');
+        return view('bladesmith::image');
     }
 }

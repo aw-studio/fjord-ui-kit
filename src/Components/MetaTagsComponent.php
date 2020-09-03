@@ -1,6 +1,6 @@
 <?php
 
-namespace Fjord\Ui\Components;
+namespace Litstack\Bladesmith\Components;
 
 use Illuminate\View\Component;
 
@@ -49,6 +49,6 @@ class MetaTagsComponent extends Component
      */
     public function render()
     {
-        return view('fjord-ui::meta-tags');
+        return view('bladesmith::meta-tags');
     }
 }
