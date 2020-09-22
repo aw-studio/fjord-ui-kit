@@ -2,7 +2,7 @@
 
 namespace Litstack\Bladesmith\Components;
 
-use Fjord\Crud\Fields\ListField\ListCollection;
+use Ignite\Crud\Fields\ListField\ListCollection;
 use Illuminate\View\Component;
 
 class NavListComponent extends Component
@@ -77,14 +77,16 @@ class NavListComponent extends Component
      * @param  string         $active_class
      * @return void
      */
-    public function __construct(ListCollection $list,
-                                $depth = null,
-                                $subLevel = 1,
-                                $layout = null,
-                                $expandable = false,
-                                $dropdown = false,
-                                $class = '',
-                                $activeClass = 'lit--active')
+    public function __construct(
+        ListCollection $list,
+        $depth = null,
+        $subLevel = 1,
+        $layout = null,
+        $expandable = false,
+        $dropdown = false,
+        $class = '',
+        $activeClass = 'lit--active'
+    )
     {
         $this->list = $list;
         $this->depth = $depth;

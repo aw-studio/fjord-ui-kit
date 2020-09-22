@@ -2,7 +2,7 @@
 
 namespace Litstack\Bladesmith\Components;
 
-use Fjord\Crud\Models\Media;
+use Ignite\Crud\Models\Media;
 use Illuminate\View\Component;
 
 class ImageComponent extends Component

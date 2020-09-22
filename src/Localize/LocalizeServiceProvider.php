@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route as RouteFacade;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
-use Litstack\Pages\Models\FjordPage;
+use Litstack\Pages\Models\Page;
 use LogicException;
 
 class LocalizeServiceProvider extends ServiceProvider
@@ -95,10 +95,10 @@ class LocalizeServiceProvider extends ServiceProvider
             return $this;
         });
 
-        $this->app->afterResolving('fjord.pages.routes', function ($routes) {
+        $this->app->afterResolving('lit.pages.routes', function ($routes) {
             $routes->extend(function (Route $route) {
                 $route->translator(function ($locale, $slug = null) {
-                    $slug = FjordPage::current()->translate($locale)->t_slug;
+                    $slug = Page::current()->translate($locale)->t_slug;
 
                     return ['slug' => $slug];
                 });
