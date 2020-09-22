@@ -1,6 +1,6 @@
 <?php
 
-use Fjord\Crud\Models\FormListItem;
+use Ignite\Crud\Models\ListItem;
 
 if (! function_exists('b64')) {
     /**
@@ -26,12 +26,12 @@ if (! function_exists('child_is_active')) {
     /**
      * Check's if list item has child with active route.
      *
-     * @param  FormListItem $item
+     * @param  ListItem $item
      * @param  string       $fieldId
      * @param  string       $value
      * @return mixed
      */
-    function child_is_active(FormListItem $item, $fieldId = 'route', $value = null)
+    function child_is_active(ListItem $item, $fieldId = 'route', $value = null)
     {
         foreach ($item->children as $child) {
             if (! $child->{$fieldId}) {
