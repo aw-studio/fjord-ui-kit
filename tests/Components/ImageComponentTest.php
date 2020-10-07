@@ -2,7 +2,7 @@
 
 namespace Tests\Support;
 
-use Fjord\Crud\Models\Media;
+use Ignite\Crud\Models\Media;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Mockery as m;
