@@ -15,7 +15,7 @@ class CrudNavMacro
     public function register()
     {
         CrudShow::macro('nav', function ($name, Closure $closure = null) {
-            return $this->list('nav')->previewTitle('{title}')->form(function ($form) use ($closure) {
+            return $this->list($name)->previewTitle('{title}')->form(function ($form) use ($closure) {
                 // Title field.
                 $form->input('title')->title('Link Text');
 
