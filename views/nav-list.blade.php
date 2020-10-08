@@ -9,6 +9,7 @@
         'items' => $list,
         'active_class' => $active_class,
         ])
+    {{ $slot }}
    </ul>
 </nav>
 
