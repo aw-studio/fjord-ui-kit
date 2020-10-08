@@ -4,7 +4,7 @@
 @if($expandable) lit-nav-list--expandable @endif 
 @if($dropdown) lit-nav-list--dropdown @endif
 ">
-   <ul>
+   <ul class="lit-nav-list__level-1">
     @include('bladesmith::partials.nav_level',[
         'items' => $list,
         'active_class' => $active_class,
