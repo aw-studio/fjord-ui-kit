@@ -32,6 +32,10 @@ class TransRoute
      */
     public function getLocale()
     {
+        if (explode('/', request()->path())[0] === config('lit.route_prefix')) {
+            return $this->getFallbackLocale();
+        }
+        
         if (count($this->locales) <= 1) {
             return $this->getFallbackLocale();
         }
