@@ -1,14 +1,18 @@
-<nav class="lit-nav-list 
-@if($class) {{ $class }} @endif
-@if($layout == 'horizontal') lit-nav-list--horizontal @endif
-@if($expandable) lit-nav-list--expandable @endif 
-@if($dropdown) lit-nav-list--dropdown @endif
-">
-   <ul>
+@props([
+    'styles' => [
+        'defaut' => ' lit-nav-list ',
+        'layout' => $layout ? ' lit-nav-list--'. $layout : '',
+        'expandable' => $expandable ? ' lit-nav-list--expandable' : '',
+        'dropdown' => $dropdown ? ' lit-nav-list--dropdown' : ''
+    ]
+])
+<nav class="{{ $class . implode('', $styles) }}">
+   <ul class="lit-nav-list__level-1">
     @include('bladesmith::partials.nav_level',[
         'items' => $list,
         'active_class' => $active_class,
         ])
+    {!! $slot !!}
    </ul>
 </nav>
 
