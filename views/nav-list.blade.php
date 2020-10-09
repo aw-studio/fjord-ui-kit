@@ -12,7 +12,7 @@
         'items' => $list,
         'active_class' => $active_class,
         ])
-    {{ $slot }}
+    {!! $slot !!}
    </ul>
 </nav>
 
