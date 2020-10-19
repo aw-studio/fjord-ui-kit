@@ -82,8 +82,10 @@ class BladesmithServiceProvider extends ServiceProvider
      */
     protected function registerBladeIfs()
     {
+        // Credits: https://stackoverflow.com/questions/677419/how-to-detect-search-engine-bots-with-php
         Blade::if('bot', function () {
-            return _bot_detected();
+            return isset($_SERVER['HTTP_USER_AGENT']) 
+                && preg_match('/bot|crawl|slurp|spider|mediapartners/i', $_SERVER['HTTP_USER_AGENT']);
         });
     }
 
