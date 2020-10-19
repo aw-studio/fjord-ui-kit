@@ -22,16 +22,16 @@ and the `x-scripts` tag at the end of the body.
 ```html
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		...
+    <head>
+        ...
 
-		<x-styles />
-	</head>
-	<body>
-		...
+        <x-styles />
+    </head>
+    <body>
+        ...
 
-		<x-scripts />
-	</body>
+        <x-scripts />
+    </body>
 </html>
 ```
 
@@ -261,4 +261,16 @@ $form->route('route_field')->collection('app')->title('Pick a route.');
 		{{ $item->title }}
 	</span>
 @endforeach
+```
+
+### (Google)-Bot detection
+
+For bot-detection in your templates use the custom Blade-If:
+
+```php
+@bot
+	i'm a bot
+@else
+	i'm human
+@endbot
 ```
