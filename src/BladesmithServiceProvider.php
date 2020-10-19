@@ -41,6 +41,8 @@ class BladesmithServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../views', 'bladesmith');
 
         $this->registerBladeComponents();
+        
+        $this->registerBladeIfs();
 
         $this->registerPublishes();
 
@@ -71,6 +73,20 @@ class BladesmithServiceProvider extends ServiceProvider
         foreach ($this->components as $name => $class) {
             Blade::component($name, $class);
         }
+    }
+
+    /**
+     * Register blade ifs.
+     *
+     * @return void
+     */
+    protected function registerBladeIfs()
+    {
+        // Credits: https://stackoverflow.com/questions/677419/how-to-detect-search-engine-bots-with-php
+        Blade::if('bot', function () {
+            return isset($_SERVER['HTTP_USER_AGENT']) 
+                && preg_match('/bot|crawl|slurp|spider|mediapartners/i', $_SERVER['HTTP_USER_AGENT']);
+        });
     }
 
     /**
