@@ -41,6 +41,8 @@ class BladesmithServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../views', 'bladesmith');
 
         $this->registerBladeComponents();
+        
+        $this->registerBladeIfs();
 
         $this->registerPublishes();
 
@@ -71,6 +73,18 @@ class BladesmithServiceProvider extends ServiceProvider
         foreach ($this->components as $name => $class) {
             Blade::component($name, $class);
         }
+    }
+
+    /**
+     * Register blade ifs.
+     *
+     * @return void
+     */
+    protected function registerBladeIfs()
+    {
+        Blade::if('bot', function () {
+            return _bot_detected();
+        });
     }
 
     /**

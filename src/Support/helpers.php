@@ -69,3 +69,19 @@ if (! function_exists('__route')) {
         return route($name, $parameters, $absolue);
     }
 }
+
+if (! function_exists('_bot_detected')) {
+    /**
+     * Detect Bot.
+     * Credits: https://stackoverflow.com/questions/677419/how-to-detect-search-engine-bots-with-php
+     *
+     * @return boolean
+     */
+    function _bot_detected(): bool
+    {
+        return (
+          isset($_SERVER['HTTP_USER_AGENT'])
+          && preg_match('/bot|crawl|slurp|spider|mediapartners/i', $_SERVER['HTTP_USER_AGENT'])
+        );
+    }
+}
