@@ -43,6 +43,20 @@ class ImageComponent extends Component
     public $class;
 
     /**
+     * generated conversions for the image.
+     *
+     * @var string
+     */
+    public $conversions;
+
+    /**
+     * smallest conversion of the image.
+     *
+     * @var string
+     */
+    public $thumbnail;
+
+    /**
      * Create new ImageComponent instance.
      *
      * @param  Media  $image
@@ -59,6 +73,8 @@ class ImageComponent extends Component
         $this->title = $this->getCustomProperty('title', $title);
         $this->class = $class;
         $this->lazy = $lazy;
+        $this->conversions = $this->getMediaConversions();
+        $this->thumbnail = $this->getThumbnail();
     }
 
     /**
@@ -74,6 +90,31 @@ class ImageComponent extends Component
             ?: $this->image->custom_properties[$property]
             ?? $this->image->custom_properties[app()->getLocale()][$property]
             ?? null;
+    }
+
+    /**
+     * Get the generated media conversions.
+     *
+     * @return Collection
+     */
+    protected function getMediaConversions()
+    {
+        return collect($this->getCustomProperty('generated_conversions', false))
+            ->filter(fn ($value) => $value == true)
+            ->keys()
+            ->mapWithKeys(function ($conversion) {
+                return [$conversion => config('lit.mediaconversions.default')[$conversion][0]];
+            });
+    }
+
+    /**
+     * Get the smallest generated media conversion.
+     *
+     * @return Collection
+     */
+    protected function getThumbnail()
+    {
+        return $this->getMediaConversions()->sort()->keys()->first();
     }
 
     /**
