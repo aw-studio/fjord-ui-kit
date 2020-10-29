@@ -1,4 +1,4 @@
-{{-- @if ($exists) --}}
+@if ($exists)
     <div class="image-container">
         <img
             @if($title)
@@ -24,7 +24,7 @@
             @endif
         />
     </div>
-{{-- @endif --}}
+@endif
 
 
 <x-style>

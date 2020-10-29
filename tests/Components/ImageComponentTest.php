@@ -178,21 +178,22 @@ class ImageComponentTest extends TestCase
 
     public function getMediaMockWithConversions()
     {
-        $image = UploadedFile::fake()->image('image.png');
+        $this->image = UploadedFile::fake()->image('image.png');
 
         $media = m::mock(Media::class)->makePartial();
 
-        $media->shouldReceive('getPath')->andReturn($image->getRealPath());
-        $media->shouldReceive('getPath')->withArgs(['sm'])->andReturn($image->getRealPath());
-        $media->shouldReceive('getPath')->withArgs(['md'])->andReturn($image->getRealPath());
+        $media->shouldReceive('getPath')->andReturn($this->image->getRealPath());
+        $media->shouldReceive('getPath')->withArgs(['sm'])->andReturn($this->image->getRealPath());
+        $media->shouldReceive('getPath')->withArgs(['md'])->andReturn($this->image->getRealPath());
 
         $media->shouldReceive('getFullUrl')->andReturn('image.png');
         $media->shouldReceive('getFullUrl')->withArgs(['sm'])->andReturn('image_sm.png');
         $media->shouldReceive('getFullUrl')->withArgs(['md'])->andReturn('image_md.png');
 
-        $media->custom_properties = ['generated_conversions' => [
-            "sm" => true,
-            "md" => true,
+        $media->custom_properties = [
+            'generated_conversions' => [
+                "sm" => true,
+                "md" => true,
             ]
         ];
 
