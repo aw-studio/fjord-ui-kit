@@ -1,25 +1,30 @@
-<div class="image-container">
-    <img
-        @if($title)
-            title="{{ $title }}"
-        @endif
-        @if($alt)
-            alt="{{ $alt }}"
-        @endif
-        @if($conversions->count())
-            src="{{ b64($image->getPath($thumbnail)) }}"
-            data-srcset="
-            @foreach ($conversions as $conversion => $size)
-                {{ $image->getFullUrl($conversion) }} {{ $size }},
-            @endforeach
-            "
-            data-sizes="auto"
-            class="{{ $lazy ? 'lazyload' : '' }} {{ $class }}" 
-        @else
-            src="{{ $image->getFullUrl() }}"
-        @endif
-    />
-</div>
+@if ($exists)
+    <div class="image-container">
+        <img
+            @if($title)
+                title="{{ $title }}"
+            @endif
+            @if($alt)
+                alt="{{ $alt }}"
+            @endif
+            {{-- Check for thumbnail to make shure the smallest found image exists --}}
+            @if($conversions->count() && $thumbnail)
+                src="{{ $thumbnail }}"
+                data-srcset="
+                @foreach ($conversions as $conversion => $size)
+                    {{ $image->getFullUrl($conversion) }} {{ $size }},
+                @endforeach
+                "
+                data-sizes="auto"
+                class="{{ $lazy ? 'lazyload' : '' }} {{ $class }}" 
+            @else
+                src="{{ $image->getFullUrl() }}"
+                class="{{ $class }}" 
+            @endif
+        />
+    </div>
+@endif
+
 
 <x-style>
 .image-container {

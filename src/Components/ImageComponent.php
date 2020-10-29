@@ -57,6 +57,13 @@ class ImageComponent extends Component
     public $thumbnail;
 
     /**
+     * check existance of exists.
+     *
+     * @var string
+     */
+    public $exists;
+
+    /**
      * Create new ImageComponent instance.
      *
      * @param  Media  $image
@@ -74,7 +81,8 @@ class ImageComponent extends Component
         $this->class = $class;
         $this->lazy = $lazy;
         $this->conversions = $this->getMediaConversions();
-        $this->thumbnail = $this->getThumbnail();
+        $this->thumbnail = $this->makeThumbnail($image);
+        $this->exists = $this->exists($image);
     }
 
     /**
@@ -108,13 +116,29 @@ class ImageComponent extends Component
     }
 
     /**
-     * Get the smallest generated media conversion.
+     * Get the smallest generated media conversion
+     * and return a base 64 string of it.
      *
      * @return Collection
      */
-    protected function getThumbnail()
+    protected function makeThumbnail($image)
     {
-        return $this->getMediaConversions()->sort()->keys()->first();
+        if (! $conversion = $this->getMediaConversions()->sort()->keys()->first()) {
+            return;
+        }
+
+        return b64($image->getPath($conversion));
+    }
+
+    /**
+     * Check if the image exists.
+     *
+     * @param  Media $image
+     * @return bool
+     */
+    protected function exists($image): bool
+    {
+        return file_exists($image->getPath());
     }
 
     /**
