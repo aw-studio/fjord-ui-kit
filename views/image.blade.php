@@ -1,4 +1,4 @@
-@if ($exists)
+{{-- @if ($exists) --}}
     <div class="image-container">
         <img
             @if($title)
@@ -7,12 +7,13 @@
             @if($alt)
                 alt="{{ $alt }}"
             @endif
-            {{-- Check for thumbnail to make shure the smallest found image exists --}}
-            @if($conversions->count() && $thumbnail)
-                src="{{ $thumbnail }}"
+            @if($conversions->count())
+                @if($thumbnail)
+                    src="{{ $thumbnail }}"
+                @endif
                 data-srcset="
                 @foreach ($conversions as $conversion => $size)
-                    {{ $image->getFullUrl($conversion) }} {{ $size }},
+                    {{ $image->getFullUrl($conversion) }} {{ $size }}w,
                 @endforeach
                 "
                 data-sizes="auto"
@@ -23,7 +24,7 @@
             @endif
         />
     </div>
-@endif
+{{-- @endif --}}
 
 
 <x-style>
