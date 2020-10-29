@@ -43,6 +43,27 @@ class ImageComponent extends Component
     public $class;
 
     /**
+     * generated conversions for the image.
+     *
+     * @var string
+     */
+    public $conversions;
+
+    /**
+     * smallest conversion of the image.
+     *
+     * @var string
+     */
+    public $thumbnail;
+
+    /**
+     * check existance of exists.
+     *
+     * @var string
+     */
+    public $exists;
+
+    /**
      * Create new ImageComponent instance.
      *
      * @param  Media  $image
@@ -59,6 +80,9 @@ class ImageComponent extends Component
         $this->title = $this->getCustomProperty('title', $title);
         $this->class = $class;
         $this->lazy = $lazy;
+        $this->conversions = $this->getMediaConversions();
+        $this->thumbnail = $this->makeThumbnail($image);
+        $this->exists = $this->exists($image);
     }
 
     /**
@@ -74,6 +98,47 @@ class ImageComponent extends Component
             ?: $this->image->custom_properties[$property]
             ?? $this->image->custom_properties[app()->getLocale()][$property]
             ?? null;
+    }
+
+    /**
+     * Get the generated media conversions.
+     *
+     * @return Collection
+     */
+    protected function getMediaConversions()
+    {
+        return collect($this->getCustomProperty('generated_conversions', false))
+            ->filter(fn ($value) => $value == true)
+            ->keys()
+            ->mapWithKeys(function ($conversion) {
+                return [$conversion => config('lit.mediaconversions.default')[$conversion][0]];
+            });
+    }
+
+    /**
+     * Get the smallest generated media conversion
+     * and return a base 64 string of it.
+     *
+     * @return Collection
+     */
+    protected function makeThumbnail($image)
+    {
+        if (! $conversion = $this->getMediaConversions()->sort()->keys()->first()) {
+            return;
+        }
+
+        return b64($image->getPath($conversion));
+    }
+
+    /**
+     * Check if the image exists.
+     *
+     * @param  Media $image
+     * @return bool
+     */
+    protected function exists($image): bool
+    {
+        return file_exists($image->getPath());
     }
 
     /**

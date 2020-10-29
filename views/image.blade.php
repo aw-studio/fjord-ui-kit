@@ -1,18 +1,31 @@
-<div class="image-container">
-    <img
-        title="{{ $title }}"
-        alt="{{ $alt }}"
-        src="{{ b64($image->getPath('sm')) }}"
-        data-srcset="
-        {{ $image->getFullUrl('sm') }} 300w,
-        {{ $image->getFullUrl('md') }} 500w,
-        {{ $image->getFullUrl('lg') }} 900w,
-        {{ $image->getFullUrl('xl') }} 1400w,
-        {{-- {{ $image->getFullUrl('xxl') }} 1800w, --}}
-        "
-        data-sizes="auto"
-        class="{{ $lazy ? 'lazyload' : '' }} {{ $class }}" />
-</div>
+{{-- @if ($exists) --}}
+    <div class="image-container">
+        <img
+            @if($title)
+                title="{{ $title }}"
+            @endif
+            @if($alt)
+                alt="{{ $alt }}"
+            @endif
+            @if($conversions->count())
+                @if($thumbnail)
+                    src="{{ $thumbnail }}"
+                @endif
+                data-srcset="
+                @foreach ($conversions as $conversion => $size)
+                    {{ $image->getFullUrl($conversion) }} {{ $size }}w,
+                @endforeach
+                "
+                data-sizes="auto"
+                class="{{ $lazy ? 'lazyload' : '' }} {{ $class }}" 
+            @else
+                src="{{ $image->getFullUrl() }}"
+                class="{{ $class }}" 
+            @endif
+        />
+    </div>
+{{-- @endif --}}
+
 
 <x-style>
 .image-container {
