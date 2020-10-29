@@ -4,6 +4,7 @@ namespace Litstack\Bladesmith\Components;
 
 use Ignite\Crud\Models\Media;
 use Illuminate\View\Component;
+use InvalidArgumentException;
 
 class ImageComponent extends Component
 {
@@ -57,13 +58,6 @@ class ImageComponent extends Component
     public $thumbnail;
 
     /**
-     * check existance of exists.
-     *
-     * @var string
-     */
-    public $exists;
-
-    /**
      * Create new ImageComponent instance.
      *
      * @param  Media  $image
@@ -75,6 +69,10 @@ class ImageComponent extends Component
      */
     public function __construct(Media $image, $lazy = true, $alt = null, $title = null, $class = '')
     {
+        if ($image == new Media) {
+            throw new InvalidArgumentException("Missing [image] attribute for ". static::class);
+        }
+
         $this->image = $image;
         $this->alt = $this->getCustomProperty('alt', $alt);
         $this->title = $this->getCustomProperty('title', $title);
@@ -82,7 +80,6 @@ class ImageComponent extends Component
         $this->lazy = $lazy;
         $this->conversions = $this->getMediaConversions();
         $this->thumbnail = $this->makeThumbnail($image);
-        $this->exists = $this->exists($image);
     }
 
     /**
@@ -133,12 +130,11 @@ class ImageComponent extends Component
     /**
      * Check if the image exists.
      *
-     * @param  Media $image
      * @return bool
      */
-    protected function exists($image): bool
+    public function exists(): bool
     {
-        return file_exists($image->getPath());
+        return file_exists($this->image->getPath());
     }
 
     /**
