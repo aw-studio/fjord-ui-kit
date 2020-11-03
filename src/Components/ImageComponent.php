@@ -81,8 +81,14 @@ class ImageComponent extends Component
      * @param  string $class
      * @return void
      */
-    public function __construct(Media $image, $lazy = true, $alt = null, $title = null, $width = null, $height = null)
-    {
+    public function __construct(
+        Media $image,
+        Bool $lazy = true,
+        String $alt = null,
+        String $title = null,
+        String $width = null,
+        String $height = null
+    ) {
         if ($image == new Media) {
             throw new InvalidArgumentException("Missing [image] attribute for ". static::class);
         }
