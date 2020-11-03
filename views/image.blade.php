@@ -1,12 +1,15 @@
 @if ($exists())
     <div class="image-container">
         <img
-            @if($title)
-                title="{{ $title }}"
-            @endif
-            @if($alt)
-                alt="{{ $alt }}"
-            @endif
+            {{ $attributes->merge([
+                'class' => !$lazy ?: 'lazyload',
+                'data-sizes' => 'auto',
+                'title' => $title,
+                'alt' => $alt,
+                'width' => $width,
+                'height' => $height,
+                ])
+            }}
             @if($conversions->count())
                 @if($thumbnail)
                     src="{{ $thumbnail }}"
@@ -16,11 +19,8 @@
                     {{ $image->getFullUrl($conversion) }} {{ $size }}w,
                 @endforeach
                 "
-                data-sizes="auto"
-                class="{{ $lazy ? 'lazyload' : '' }} {{ $class }}" 
             @else
                 src="{{ $image->getFullUrl() }}"
-                class="{{ $class }}" 
             @endif
         />
     </div>

@@ -81,7 +81,7 @@ class ImageComponent extends Component
      * @param  string $class
      * @return void
      */
-    public function __construct(Media $image, $lazy = true, $alt = null, $title = null, $class = '', $width = null, $height = null)
+    public function __construct(Media $image, $lazy = true, $alt = null, $title = null, $width = null, $height = null)
     {
         if ($image == new Media) {
             throw new InvalidArgumentException("Missing [image] attribute for ". static::class);
@@ -90,7 +90,6 @@ class ImageComponent extends Component
         $this->image = $image;
         $this->alt = $this->getCustomProperty('alt', $alt);
         $this->title = $this->getCustomProperty('title', $title);
-        $this->class = $class;
         $this->lazy = $lazy;
         $this->conversions = $this->getMediaConversions();
         $this->thumbnail = $this->makeThumbnail($image);
