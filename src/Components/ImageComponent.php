@@ -100,8 +100,8 @@ class ImageComponent extends Component
         $this->conversions = $this->getMediaConversions();
         $this->thumbnail = $this->makeThumbnail($image);
 
-        $this->width =  ($width === 'original') ? $this->originalWidth() : $width;
-        $this->height =  ($height === 'original') ? $this->originalHeight() : $height;
+        $this->width =  ($width === 'original') ? $this->getOriginalWidth() : $width;
+        $this->height =  ($height === 'original') ? $this->getOriginalHeight() : $height;
     }
 
     /**
@@ -109,7 +109,7 @@ class ImageComponent extends Component
      *
      * @return mixed
      */
-    public function originalWidth()
+    public function getOriginalWidth()
     {
         if (file_exists($this->image->getPath())) {
             return Image::make($this->image->getPath())->width();
@@ -122,7 +122,7 @@ class ImageComponent extends Component
      *
      * @return mixed
      */
-    public function originalHeight()
+    public function getOriginalHeight()
     {
         if (file_exists($this->image->getPath())) {
             return Image::make($this->image->getPath())->height();
