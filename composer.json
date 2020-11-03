@@ -12,7 +12,8 @@
 	},
 	"require": {
 		"cbl/blade-script": "^1.0",
-		"cbl/blade-style": "^1.0"
+		"cbl/blade-style": "^1.0",
+		"intervention/image": "^2.5"
 	},
 	"require-dev": {
 		"litstack/litstack": "^3.0",
