@@ -100,8 +100,8 @@ class ImageComponent extends Component
         $this->conversions = $this->getMediaConversions();
         $this->thumbnail = $this->makeThumbnail($image);
 
-        $this->width =  ($width == 'original') ? $this->originalWidth() : $width;
-        $this->height =  ($height == 'original') ? $this->originalHeight() : $height;
+        $this->width =  ($width === 'original') ? $this->originalWidth() : $width;
+        $this->height =  ($height === 'original') ? $this->originalHeight() : $height;
     }
 
     /**
