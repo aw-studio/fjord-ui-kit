@@ -8,6 +8,7 @@ use Illuminate\View\View;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Http\Testing\FileFactory;
+use Intervention\Image\ImageServiceProvider;
 use Litstack\Bladesmith\BladesmithServiceProvider;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 use BladeStyle\ServiceProvider as BladeStyleServiceProvider;
@@ -35,6 +36,7 @@ class TestCase extends OrchestraTestCase
             BladeStyleServiceProvider::class,
             BladeScriptServiceProvider::class,
             BladesmithServiceProvider::class,
+            ImageServiceProvider::class,
         ];
     }
 

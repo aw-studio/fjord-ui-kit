@@ -84,7 +84,7 @@ class ImageComponentTest extends TestCase
     public function it_has_an_image_component_with_a_data_sizes_attribute()
     {
         $media = $this->getMediaMockWithConversions();
-        
+
         $blade = $this->blade('<x-lit-image :image="$image"/>', ['image' => $media]);
         $blade->assertHas('.image-container')->withChild('img');
         $blade->assertHas('img')->withAttribute('data-sizes')->thatIs('auto');
@@ -174,6 +174,38 @@ class ImageComponentTest extends TestCase
         $blade->assertHas('img')
               ->withAttribute('src')
               ->thatIs('image.png');
+    }
+
+    /** @test */
+    public function it_receives_original_image_width()
+    {
+        $image = UploadedFile::fake()->image('image.png', 450);
+
+        $media = m::mock(Media::class)->makePartial();
+        $media->shouldReceive('getPath')->andReturn($image->getRealPath());
+        $media->shouldReceive('getFullUrl')->andReturn('image.png');
+
+        $blade = $this->blade('<x-lit-image :image="$image" width="original" />', ['image' => $media]);
+
+        $blade->assertHas('img')
+              ->withAttribute('width')
+              ->thatIs('450');
+    }
+
+    /** @test */
+    public function it_receives_the_given_image_width()
+    {
+        $image = UploadedFile::fake()->image('image.png');
+
+        $media = m::mock(Media::class)->makePartial();
+        $media->shouldReceive('getPath')->andReturn($image->getRealPath());
+        $media->shouldReceive('getFullUrl')->andReturn('image.png');
+
+        $blade = $this->blade('<x-lit-image :image="$image" width="300" />', ['image' => $media]);
+
+        $blade->assertHas('img')
+              ->withAttribute('width')
+              ->thatIs('300');
     }
 
     public function getMediaMockWithConversions()
