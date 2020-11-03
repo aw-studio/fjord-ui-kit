@@ -3,8 +3,9 @@
 namespace Litstack\Bladesmith\Components;
 
 use Ignite\Crud\Models\Media;
-use Illuminate\View\Component;
 use InvalidArgumentException;
+use Illuminate\View\Component;
+use Intervention\Image\Facades\Image;
 
 class ImageComponent extends Component
 {
@@ -58,6 +59,19 @@ class ImageComponent extends Component
     public $thumbnail;
 
     /**
+     * The image width
+     *
+     * @var string
+     */
+    public $width;
+
+    /**
+     * The image height
+     *
+     * @var string
+     */
+    public $height;
+    /**
      * Create new ImageComponent instance.
      *
      * @param  Media  $image
@@ -67,7 +81,7 @@ class ImageComponent extends Component
      * @param  string $class
      * @return void
      */
-    public function __construct(Media $image, $lazy = true, $alt = null, $title = null, $class = '')
+    public function __construct(Media $image, $lazy = true, $alt = null, $title = null, $class = '', $width = null, $height = null)
     {
         if ($image == new Media) {
             throw new InvalidArgumentException("Missing [image] attribute for ". static::class);
@@ -80,6 +94,35 @@ class ImageComponent extends Component
         $this->lazy = $lazy;
         $this->conversions = $this->getMediaConversions();
         $this->thumbnail = $this->makeThumbnail($image);
+
+        $this->width =  ($width == 'original') ? $this->originalWidth() : $width;
+        $this->height =  ($height == 'original') ? $this->originalHeight() : $height;
+    }
+
+    /**
+     * Get the width of the original image
+     *
+     * @return mixed
+     */
+    public function originalWidth()
+    {
+        if (file_exists($this->image->getPath())) {
+            return Image::make($this->image->getPath())->width();
+        }
+        return false;
+    }
+
+    /**
+     * Get the height of the original image
+     *
+     * @return mixed
+     */
+    public function originalHeight()
+    {
+        if (file_exists($this->image->getPath())) {
+            return Image::make($this->image->getPath())->height();
+        }
+        return false;
     }
 
     /**
