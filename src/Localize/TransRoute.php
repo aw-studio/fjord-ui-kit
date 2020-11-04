@@ -35,7 +35,7 @@ class TransRoute
         if (explode('/', request()->path())[0] === config('lit.route_prefix')) {
             return $this->getFallbackLocale();
         }
-        
+
         if (count($this->locales) <= 1) {
             return $this->getFallbackLocale();
         }
@@ -111,7 +111,7 @@ class TransRoute
         $route = Route::prefix($locale)
             ->as("{$locale}.")
             ->get($uri, $action)
-            ->translator(fn ($locale) => []);
+            ->translator(fn ($locale) => request()->route()->parameters());
 
         return $route;
     }
