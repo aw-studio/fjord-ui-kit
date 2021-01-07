@@ -104,7 +104,12 @@ class ImageComponent extends Component
      */
     protected function getMediaConversions()
     {
-        return collect($this->getCustomProperty('generated_conversions', false))
+        $conversions = $this->getCustomProperty('generated_conversions', false);
+        if (is_null($conversions)) {
+            $conversions = $this->image->generated_conversions;
+        }
+
+        return collect($conversions)
             ->filter(fn ($value) => $value == true)
             ->keys()
             ->mapWithKeys(function ($conversion) {
