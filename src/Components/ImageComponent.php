@@ -105,12 +105,16 @@ class ImageComponent extends Component
     protected function getMediaConversions()
     {
         $conversions = $this->getCustomProperty('generated_conversions', false);
+        
         if (is_null($conversions)) {
             $conversions = $this->image->generated_conversions;
         }
 
         return collect($conversions)
+            // Value is false when the conversion has not been generated. 
             ->filter(fn ($value) => $value == true)
+            // Only use versions that are specified in the lit config
+            ->filter(fn ($value, $conversion) => array_key_exists($conversion, config('lit.mediaconversions.default')))
             ->keys()
             ->mapWithKeys(function ($conversion) {
                 return [$conversion => config('lit.mediaconversions.default')[$conversion][0]];
