@@ -17,7 +17,7 @@ class CrudNavMacro
         CrudShow::macro('nav', function ($name, Closure $closure = null) {
             return $this->list($name)->previewTitle('{title}')->form(function ($form) use ($closure) {
                 // Title field.
-                $form->input('title')->title('Link Text');
+                $form->input('title')->title('Link Text')->translatable();
 
                 // Route field.
                 $form->route('route')->title('Route')->collection('app');
