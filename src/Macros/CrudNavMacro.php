@@ -20,7 +20,7 @@ class CrudNavMacro
                 $form->input('title')->title('Link Text')->translatable();
 
                 // Route field.
-                $form->route('route')->title('Route')->collection('app');
+                $form->route('route')->title('Route')->collection('app')->allowEmpty();
 
                 // Next we are allowing to append field by passing the form to
                 // a closure if given.
