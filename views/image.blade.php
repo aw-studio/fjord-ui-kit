@@ -17,7 +17,7 @@
                 @endforeach
                 "
                 data-sizes="auto"
-                class="{{ $lazy ? 'lazyload' : '' }} {{ $class }}" 
+                class="{{ $lazy ? 'lazyload lazyload-animation' : '' }} {{ $class }}" 
             @else
                 src="{{ $image->getFullUrl() }}"
                 class="{{ $class }}" 
@@ -31,13 +31,16 @@
 .image-container {
     overflow: hidden;
 }
-.lazyloading {
+.lazyload, .lazyloading {
     -webkit-filter: blur(20px);
     filter: blur(20px);
 }
 .lazyloaded {
     -webkit-filter: blur(0px);
     filter: blur(0);
+}
+.lazyload-animation{
+    transition: .25s filter ease
 }
 </x-style>
 
