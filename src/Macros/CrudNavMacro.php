@@ -17,13 +17,16 @@ class CrudNavMacro
         CrudShow::macro('nav', function ($name, Closure $closure = null) {
             return $this->list($name)->previewTitle('{title}')->form(function ($form) use ($closure) {
                 // Title field.
-                $form->input('title')->title('Link Text')->translatable();
+                $form->input('title')->title('Link Text')->translatable()->width(8);
+                
+                // External.
+                $form->boolean('external')->title('External Link');
 
                 // Route field.
-                $form->route('route')->title('Route (intern)')->collection('app')->allowEmpty();
+                $form->route('route')->title('Route (intern)')->collection('app')->allowEmpty()->when('external', false);
 
                 // URL field.
-                $form->input('url')->title('URL (extern)');
+                $form->input('url')->title('URL (extern)')->when('external', true);
 
                 // _blank boolean.
                 $form->boolean('target_blank');
