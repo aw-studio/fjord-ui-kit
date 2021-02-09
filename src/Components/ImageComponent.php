@@ -67,19 +67,21 @@ class ImageComponent extends Component
      * @param  string $class
      * @return void
      */
-    public function __construct(Media $image, $lazy = true, $alt = null, $title = null, $class = '')
+    public function __construct(Media $image = null, $lazy = true, $alt = null, $title = null, $class = '')
     {
         if ($image == new Media) {
-            throw new InvalidArgumentException("Missing [image] attribute for ". static::class);
+            throw new InvalidArgumentException('Missing [image] attribute for '.static::class);
         }
 
         $this->image = $image;
-        $this->alt = $this->getCustomProperty('alt', $alt);
-        $this->title = $this->getCustomProperty('title', $title);
         $this->class = $class;
         $this->lazy = $lazy;
-        $this->conversions = $this->getMediaConversions();
-        $this->thumbnail = $this->makeThumbnail($image);
+        if ($image) {
+            $this->alt = $this->getCustomProperty('alt', $alt);
+            $this->title = $this->getCustomProperty('title', $title);
+            $this->conversions = $this->getMediaConversions();
+            $this->thumbnail = $this->makeThumbnail($image);
+        }
     }
 
     /**
@@ -105,13 +107,13 @@ class ImageComponent extends Component
     protected function getMediaConversions()
     {
         $conversions = $this->getCustomProperty('generated_conversions', false);
-        
+
         if (is_null($conversions)) {
             $conversions = $this->image->generated_conversions;
         }
 
         return collect($conversions)
-            // Value is false when the conversion has not been generated. 
+            // Value is false when the conversion has not been generated.
             ->filter(fn ($value) => $value == true)
             // Only use versions that are specified in the lit config
             ->filter(fn ($value, $conversion) => array_key_exists($conversion, config('lit.mediaconversions.default')))
@@ -143,6 +145,10 @@ class ImageComponent extends Component
      */
     public function exists(): bool
     {
+        if (! $this->image) {
+            return false;
+        }
+
         return file_exists($this->image->getPath());
     }
 
