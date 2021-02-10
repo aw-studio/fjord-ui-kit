@@ -97,7 +97,7 @@ class BladesmithServiceProvider extends ServiceProvider
     protected function registerPublishes()
     {
         $this->publishes([
-            __DIR__.'/../views' => resource_path('views/vendor/bladsmith'),
+            __DIR__.'/../views' => resource_path('views/vendor/bladesmith'),
         ], 'views');
     }
 }
