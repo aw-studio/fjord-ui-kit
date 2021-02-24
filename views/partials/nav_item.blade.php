@@ -8,7 +8,7 @@ if($class = child_is_active($item, 'route', $active_class)) {
 }
 @endphp
 
-<li @if($item->children->count() > 0) class="lit-nav-list--has-children"@endif>
+<li @if($item->children->count() > 0) class="lit-nav-list--has-children"@endif @if($item->external) target="_blank" @endif>
     <a class="{{ $linkClass }}" href="{{ $item->route ?? $item->url }}" target="@if($item->target_blank) _blank @endif">
         {{ $item->title }}
     </a>
