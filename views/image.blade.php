@@ -1,5 +1,5 @@
 @if ($exists())
-    <div class="image-container">
+    <div class="image-container @isset($container){{ $container }} @endisset">
         <img
             @if($title)
                 title="{{ $title }}"
