@@ -23,7 +23,7 @@ class BladesmithServiceProvider extends ServiceProvider
     ];
 
     /**
-     * The macros to be registered
+     * The macros to be registered.
      *
      * @var array
      */
@@ -41,7 +41,7 @@ class BladesmithServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../views', 'bladesmith');
 
         $this->registerBladeComponents();
-        
+
         $this->registerBladeIfs();
 
         $this->registerPublishes();
@@ -84,8 +84,12 @@ class BladesmithServiceProvider extends ServiceProvider
     {
         // Credits: https://stackoverflow.com/questions/677419/how-to-detect-search-engine-bots-with-php
         Blade::if('bot', function () {
-            return isset($_SERVER['HTTP_USER_AGENT']) 
+            return isset($_SERVER['HTTP_USER_AGENT'])
                 && preg_match('/bot|crawl|slurp|spider|mediapartners/i', $_SERVER['HTTP_USER_AGENT']);
+        });
+
+        Blade::if('hasslot', function ($slot) {
+            return strlen(trim(preg_replace('/\s\s+/', ' ', $slot))) > 0;
         });
     }
 
