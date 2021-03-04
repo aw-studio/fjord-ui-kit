@@ -1,5 +1,5 @@
 @if ($exists())
-    <div class="image-container @isset($container){{ $container }} @endisset">
+    <div class="@if(!$showOverflow) image-container @endif @isset($container){{ $container }} @endisset">
         <img
             @if($title)
                 title="{{ $title }}"

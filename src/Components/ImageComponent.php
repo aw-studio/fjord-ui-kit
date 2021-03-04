@@ -51,6 +51,13 @@ class ImageComponent extends Component
     public $container;
 
     /**
+     * showOverflow of image container.
+     *
+     * @var bool
+     */
+    public $showOverflow;
+
+    /**
      * generated conversions for the image.
      *
      * @var string
@@ -72,10 +79,19 @@ class ImageComponent extends Component
      * @param  string $alt
      * @param  string $title
      * @param  string $class
+     * @param  string $class
+     * @param  string $class
      * @return void
      */
-    public function __construct(Media $image = null, $lazy = true, $alt = null, $title = null, $class = '', $container = '')
-    {
+    public function __construct(
+        Media $image = null,
+        $lazy = true,
+        $alt = null,
+        $title = null,
+        $class = '',
+        $container = '',
+        $showOverflow = null
+    ) {
         if ($image == new Media) {
             throw new InvalidArgumentException('Missing [image] attribute for '.static::class);
         }
