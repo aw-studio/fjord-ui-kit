@@ -99,6 +99,7 @@ class ImageComponent extends Component
         $this->image = $image;
         $this->class = $class;
         $this->container = $container;
+        $this->showOverflow = $showOverflow;
         $this->lazy = $lazy;
         if ($image) {
             $this->alt = $this->getCustomProperty('alt', $alt);
