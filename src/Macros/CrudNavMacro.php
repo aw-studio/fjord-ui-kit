@@ -23,7 +23,7 @@ class CrudNavMacro
                 $form->boolean('external')->title('External Link');
 
                 // Route field.
-                $form->route('route')->title('Route (intern)')->collection('app')->allowEmpty()->when('external', false)->orWhen('external', null);
+                $form->route('route')->title('Route (intern)')->collection('app')->allowEmpty()->whenNot('external', true);
 
                 // URL field.
                 $form->input('url')->title('URL (extern)')->when('external', true);
