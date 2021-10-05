@@ -17,7 +17,7 @@ class CrudNavMacro
         CrudShow::macro('nav', function ($name, Closure $closure = null) {
             return $this->list($name)->previewTitle('{title}')->form(function ($form) use ($closure) {
                 // Title field.
-                $form->input('title')->title('Link Text')->translatable()->width(8);
+                $form->input('title')->title('Link Text')->translatable(lit()->isAppTranslatable())->width(8);
                 
                 // External.
                 $form->boolean('external')->title('External Link');
