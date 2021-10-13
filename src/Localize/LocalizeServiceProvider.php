@@ -96,13 +96,15 @@ class LocalizeServiceProvider extends ServiceProvider
         });
 
         $this->app->afterResolving('lit.pages.routes', function ($routes) {
-            $routes->extend(function (Route $route) {
-                $route->translator(function ($locale, $slug = null) {
-                    $slug = Page::current()->translate($locale)->t_slug;
+            if (lit()->isAppTranslatable()) {
+                $routes->extend(function (Route $route) {
+                    $route->translator(function ($locale, $slug = null) {
+                        $slug = Page::current()->translate($locale)->t_slug;
 
-                    return ['slug' => $slug];
+                        return ['slug' => $slug];
+                    });
                 });
-            });
+            }
         });
     }
 
