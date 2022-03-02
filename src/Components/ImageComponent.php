@@ -72,6 +72,13 @@ class ImageComponent extends Component
     public $thumbnail;
 
     /**
+     * smallest conversion of the image.
+     *
+     * @var bool
+     */
+    public $isGif;
+
+    /**
      * Create new ImageComponent instance.
      *
      * @param  Media  $image
@@ -93,7 +100,7 @@ class ImageComponent extends Component
         $showOverflow = null
     ) {
         if ($image == new Media) {
-            throw new InvalidArgumentException('Missing [image] attribute for '.static::class);
+            throw new InvalidArgumentException('Missing [image] attribute for ' . static::class);
         }
 
         $this->image = $image;
@@ -105,7 +112,14 @@ class ImageComponent extends Component
             $this->alt = $this->getCustomProperty('alt', $alt);
             $this->title = $this->getCustomProperty('title', $title);
             $this->conversions = $this->getMediaConversions();
+        }
+        if ($image && $image->mime_type != 'image/gif') {
             $this->thumbnail = $this->makeThumbnail($image);
+            $this->isGif = false;
+        }
+        if ($image && $image->mime_type == 'image/gif') {
+            $this->thumbnail = $image->original_url;
+            $this->isGif = true;
         }
     }
 
