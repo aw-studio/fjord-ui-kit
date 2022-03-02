@@ -7,7 +7,7 @@
             @if($alt)
                 alt="{{ $alt }}"
             @endif
-            @if($conversions->count())
+            @if($conversions->count() && !$isGif)
                 @if($thumbnail)
                     src="{{ $thumbnail }}"
                 @endif
