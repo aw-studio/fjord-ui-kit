@@ -99,7 +99,10 @@ class LocalizeServiceProvider extends ServiceProvider
             if (lit()->isAppTranslatable()) {
                 $routes->extend(function (Route $route) {
                     $route->translator(function ($locale, $slug = null) {
-                        $slug = Page::current()->translate($locale)->t_slug;
+                        $slug = Page::current()?->translate($locale)->t_slug;
+                        if (! $slug) {
+                            abort(404);
+                        }
 
                         return ['slug' => $slug];
                     });
