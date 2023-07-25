@@ -38,12 +38,12 @@ class LocalizeTest extends TestCase
     }
 
     /** @test */
-    public function it_adds_locale_route_prefix()
+    public function it_adds_locale_route_prefix_for_secondary_language()
     {
         Route::trans('home', fn () => null);
 
         foreach (Route::getRoutes()->getRoutes() as $route) {
-            $this->assertContains(explode('/', $route->uri)[0], ['de', 'en']);
+            $this->assertContains(explode('/', $route->uri())[0], ['de', 'home']);
         }
     }
 
@@ -70,7 +70,7 @@ class LocalizeTest extends TestCase
         Request::setRouteResolver(fn () => $route);
 
         $this->assertStringEndsWith('de/home', route($route->getName()));
-        $this->assertStringEndsWith('en/home', $route->translate('en'));
+        $this->assertStringEndsWith('home', $route->translate('en'));
     }
 
     /** @test */

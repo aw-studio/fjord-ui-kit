@@ -44,7 +44,7 @@ class TransRoute
             return $locale;
         }
 
-        if (! isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+        if (!isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
             return $this->getFallbackLocale();
         }
 
@@ -111,10 +111,17 @@ class TransRoute
     {
         $uri = $this->compileUri($uri, $locale);
 
-        $route = Route::prefix($locale)
-            ->as("{$locale}.")
-            ->get($uri, $action)
-            ->translator(fn ($locale) => request()->route()->parameters());
+        if ($locale != $this->getFallbackLocale()) {
+            $route = Route::prefix($locale)
+                ->as("{$locale}.")
+                ->get($uri, $action)
+                ->translator(fn ($locale) => request()->route()->parameters());
+        } else {
+            $route = Route::as("{$locale}.")
+                ->get($uri, $action)
+                ->translator(fn ($locale) => request()->route()->parameters());
+        }
+
 
         return $route;
     }
