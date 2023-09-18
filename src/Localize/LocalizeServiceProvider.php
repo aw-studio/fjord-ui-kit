@@ -21,7 +21,8 @@ class LocalizeServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('route.trans', function ($app) {
-            return new TransRoute($app['config']['translatable.locales'] ?: []);
+            $locales = $app['config']['app.locales'] ?: $app['config']['translatable.locales'] ?: [];
+            return new TransRoute($locales);
         });
 
         // Macros
